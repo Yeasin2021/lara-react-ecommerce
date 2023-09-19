@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
+import Web from './frontend/Web';
 
 const Master = () => {
   return (
     <div>
-       
+       <Web />
     </div>
   )
 }
