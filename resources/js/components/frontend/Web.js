@@ -3,6 +3,7 @@ import Header from './Header';
 import Banner from './Banner';
 import FeatureArea from './FeatureArea';
 import FeatureProduct from './FeatureProduct';
+import Offer from './Offer';
 
 
 const Web = () => {
@@ -12,6 +13,7 @@ const Web = () => {
         <Banner />
         <FeatureArea />
         <FeatureProduct />
+        <Offer />
     </div>
   )
 }
