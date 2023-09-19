@@ -69,7 +69,8 @@ const Header = () => {
                                 <Link className="nav-link" to='/category'>Shop Category</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="single-product.html">Product Details</a>
+                                {/* <a className="nav-link" href="single-product.html">Product Details</a> */}
+                                <Link className="nav-link" to='/product-details'>Product Details</Link>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="checkout.html">Product Checkout</a>
