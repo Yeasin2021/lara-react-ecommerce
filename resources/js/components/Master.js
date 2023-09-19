@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 const Master = () => {
   return (
     <div>
-        <h1>All Routes Are Including here ........</h1>
+       
     </div>
   )
 }

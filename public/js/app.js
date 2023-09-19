@@ -5145,11 +5145,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Master = function Master() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-      children: "All Routes Are Including here ........"
-    })
-  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {});
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Master);
 if (document.getElementById('master')) {
