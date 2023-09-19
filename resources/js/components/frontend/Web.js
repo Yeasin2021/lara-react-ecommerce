@@ -7,6 +7,7 @@ import Offer from './Offer';
 import NewProduct from './NewProduct';
 import InspiredProduct from './InspiredProduct';
 import Blog from './Blog';
+import Footer from './Footer';
 
 
 const Web = () => {
@@ -20,6 +21,7 @@ const Web = () => {
         <NewProduct />
         <InspiredProduct />
         <Blog />
+        <Footer />
     </div>
   )
 }
