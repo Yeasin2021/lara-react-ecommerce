@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Banner from './Banner';
+import FeatureArea from './FeatureArea';
 
 
 const Web = () => {
@@ -8,6 +9,7 @@ const Web = () => {
     <div>
         <Header/>
         <Banner />
+        <FeatureArea />
     </div>
   )
 }
