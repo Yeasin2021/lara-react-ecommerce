@@ -6,6 +6,7 @@ import FeatureProduct from './FeatureProduct';
 import Offer from './Offer';
 import NewProduct from './NewProduct';
 import InspiredProduct from './InspiredProduct';
+import Blog from './Blog';
 
 
 const Web = () => {
@@ -18,6 +19,7 @@ const Web = () => {
         <Offer />
         <NewProduct />
         <InspiredProduct />
+        <Blog />
     </div>
   )
 }
