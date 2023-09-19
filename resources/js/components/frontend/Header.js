@@ -65,7 +65,8 @@ const Header = () => {
                             aria-expanded="false">Shop</a>
                             <ul className="dropdown-menu">
                             <li className="nav-item">
-                                <a className="nav-link" href="category.html">Shop Category</a>
+                                {/* <a className="nav-link" href="category.html">Shop Category</a> */}
+                                <Link className="nav-link" to='/category'>Shop Category</Link>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="single-product.html">Product Details</a>
@@ -87,7 +88,8 @@ const Header = () => {
                                 <Link className="nav-link" to='/blog'>Blog</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="single-blog.html">Blog Details</a>
+                                {/* <a className="nav-link" href="single-blog.html">Blog Details</a> */}
+                                <Link className="nav-link" to='/single-blog'>Blog Details</Link>
                             </li>
                             </ul>
                         </li>

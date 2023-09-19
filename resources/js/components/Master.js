@@ -4,6 +4,7 @@ import { BrowserRouter as Router , Routes, Route, Redirect, Link } from "react-r
 import Web from './frontend/Web';
 import SingleBlog from './frontend/pages/SingleBlog';
 import Blog from './frontend/pages/Blog';
+import Product from './frontend/pages/Product';
 
 const Master = () => {
   return (
@@ -13,6 +14,7 @@ const Master = () => {
                 <Route path='/' element={<Web />}></Route>
                 <Route path='/blog' element={<Blog />}></Route>
                 <Route path='/single-blog' element={<SingleBlog />}></Route>
+                <Route path='/category' element={<Product />}></Route>
             </Routes>
         </Router>
     </div>
