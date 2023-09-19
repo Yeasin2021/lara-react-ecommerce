@@ -84,7 +84,7 @@ const Header = () => {
                             <ul className="dropdown-menu">
                             <li className="nav-item">
                                 {/* <a className="nav-link" href="blog.html">Blog</a> */}
-                                <Link className="nav-link" to='/single-blog'>Blog</Link>
+                                <Link className="nav-link" to='/blog'>Blog</Link>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="single-blog.html">Blog Details</a>
