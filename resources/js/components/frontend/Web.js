@@ -5,6 +5,7 @@ import FeatureArea from './FeatureArea';
 import FeatureProduct from './FeatureProduct';
 import Offer from './Offer';
 import NewProduct from './NewProduct';
+import InspiredProduct from './InspiredProduct';
 
 
 const Web = () => {
@@ -16,6 +17,7 @@ const Web = () => {
         <FeatureProduct />
         <Offer />
         <NewProduct />
+        <InspiredProduct />
     </div>
   )
 }
