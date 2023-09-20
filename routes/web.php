@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('front');
+
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('admin');
 
 
 Route::get('/{path?}/{paths?}', function () {

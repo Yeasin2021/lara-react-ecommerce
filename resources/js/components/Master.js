@@ -6,6 +6,7 @@ import SingleBlog from './frontend/pages/SingleBlog';
 import Blog from './frontend/pages/Blog';
 import Product from './frontend/pages/Product';
 import ProductDetails from './frontend/pages/ProductDetails';
+import Login from './login/Login';
 
 const Master = () => {
   return (
@@ -17,6 +18,7 @@ const Master = () => {
                 <Route path='/single-blog' element={<SingleBlog />}></Route>
                 <Route path='/category' element={<Product />}></Route>
                 <Route path='/product-details' element={<ProductDetails />}></Route>
+                <Route path='/login' element={<Login />}></Route>
             </Routes>
         </Router>
     </div>
