@@ -3,6 +3,7 @@ import Sidebar from './Partial/Sidebar';
 import Header from './Partial/Header';
 import BreadCumb from './Partial/BreadCumb';
 import Content from './Partial/Content';
+import { Outlet } from "react-router-dom";
 
 
 const Dashboard = () => {
@@ -14,6 +15,7 @@ const Dashboard = () => {
             <Header />
             <BreadCumb />
             <Content />
+            <Outlet />
         </div>
     </div>
   )
