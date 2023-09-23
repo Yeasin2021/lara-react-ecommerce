@@ -1,6 +1,16 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Header = () => {
+
+    const navigate = useNavigate();
+    function handleLogout(){
+    axios.post('logout');
+    localStorage.removeItem('access_token');
+    navigate("/");
+    }
+
   return (
     <div>
     <header id="header" className="header">
@@ -95,7 +105,7 @@ const Header = () => {
 
                         <a className="nav-link" href="#"><i className="fa fa-cog"></i> Settings</a>
 
-                        <a className="nav-link" href="#"><i className="fa fa-power-off"></i> Logout</a>
+                        <a className="nav-link"  onClick={handleLogout}><i className="fa fa-power-off"></i> Logout</a>
                     </div>
                 </div>
 
