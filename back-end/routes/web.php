@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\BannerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,12 @@ Route::get('/', function () {
 
 Route::post('login', [AuthenticationController::class,'login']);
 Route::post('logout', [AuthenticationController::class,'logout']);
+
+
+
+Route::resource('banner', BannerController::class);
+
+
 
 
 
