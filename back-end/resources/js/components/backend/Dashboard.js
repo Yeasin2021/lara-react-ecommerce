@@ -11,7 +11,7 @@ const Dashboard = () => {
   return (
     <div className='d-flex'>
             <Sidebar />
-        <div id="right-panel" className="right-panel">
+        <div id="right-panel" className="right-panel" style={{ width:'100%' }}>
             <Header />
             <BreadCumb />
             <Content />

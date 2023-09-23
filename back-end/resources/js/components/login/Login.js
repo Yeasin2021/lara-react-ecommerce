@@ -5,6 +5,9 @@ import axios from 'axios';
 const Login = () => {
 const navigate = useNavigate();
 const [input,setInput] = useState({email:'',password:''});
+// const customHeight = {
+//     height:'100vh'
+// }
 const login = async (e)=>{
     e.preventDefault();
     const res = await axios.post("login",input);
@@ -21,7 +24,7 @@ const login = async (e)=>{
   }
 
   return (
-    <div className='bg-dark'>
+    <div className='bg-dark' style={{ height:'100vh' }}>
     <div className="sufee-login d-flex align-content-center flex-wrap">
         <div className="container">
             <div className="login-content">
@@ -42,7 +45,7 @@ const login = async (e)=>{
                             <input type="password" className="form-control" placeholder="Password"
                             name='password' onChange={(e)=>setInput({...input, [e.target.name] : e.target.value})} />
                         </div>
-                        <div className="checkbox">
+                        {/* <div className="checkbox">
                             <label> <input type="checkbox" /> Remember Me </label>
                             <label className="pull-right">
                                 <a href="#">Forgotten Password?</a>
@@ -57,7 +60,7 @@ const login = async (e)=>{
                         </div>
                         <div className="register-link m-t-15 text-center">
                             <p>Don't have account ? <a href="#"> Sign Up Here</a></p>
-                        </div>
+                        </div> */}
                         <button type="submit" className="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
                     </form>
                 </div>

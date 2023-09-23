@@ -4,6 +4,7 @@ import { BrowserRouter as Router , Routes, Route, Redirect, Link } from "react-r
 import Protected from './Protected';
 import Login from './login/Login';
 import Dashboard from './backend/Dashboard';
+import Banner from './backend/pages/table/Banner';
 
 const Admin = () => {
 const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -21,13 +22,11 @@ useEffect(() => {
     <div>
         <Router>
             <Routes>
-
                 <Route path='/' element={<Login />}></Route>
                 <Route element={<Dashboard />}>
                     <Route path='/admin-dashboard' element={<Protected isLogedIn={isLoggedIn}><Dashboard /></Protected>}></Route>
+                    <Route path='/admin-banner' element={<Protected isLogedIn={isLoggedIn}><Banner /></Protected>}></Route>
                 </Route>
-
-
             </Routes>
         </Router>
     </div>
