@@ -1,27 +1,48 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { useNavigate,Link } from "react-router-dom";
+import axios from 'axios';
 
 const Login = () => {
+const navigate = useNavigate();
+const [input,setInput] = useState({email:'',password:''});
+const login = async (e)=>{
+    e.preventDefault();
+    const res = await axios.post("login",input);
+    console.log(res);
+    if(res.status === 200){
+        localStorage.setItem('access_token',JSON.stringify(input));
+        const a = localStorage.getItem('access_token','***');
+        console.log(JSON.parse(a));
+        navigate("/admin-dashboard");
+    }else{
+        navigate("/");
+        console.log("credential is not match");
+    }
+  }
+
   return (
-    <div>
+    <div className='bg-dark'>
     <div className="sufee-login d-flex align-content-center flex-wrap">
         <div className="container">
             <div className="login-content">
                 <div className="login-logo">
                     <a href="index.html">
-                        <img className="align-content" src="backend/assets/images/logo.png" alt="" />
+                        <img className="align-content" src="backend/images/logo.png" alt="" />
                     </a>
                 </div>
                 <div className="login-form">
-                    <form>
+                    <form onSubmit={login}>
                         <div className="form-group">
                             <label>Email address</label>
-                            <input type="email" className="form-control" placeholder="Email" />
+                            <input type="email" className="form-control" placeholder="Email"
+                             name='email' onChange={(e)=>setInput({...input, [e.target.name] : e.target.value})}/>
                         </div>
                         <div className="form-group">
                             <label>Password</label>
-                            <input type="password" className="form-control" placeholder="Password" />
+                            <input type="password" className="form-control" placeholder="Password"
+                            name='password' onChange={(e)=>setInput({...input, [e.target.name] : e.target.value})} />
                         </div>
-                        {/* <div className="checkbox">
+                        <div className="checkbox">
                             <label> <input type="checkbox" /> Remember Me </label>
                             <label className="pull-right">
                                 <a href="#">Forgotten Password?</a>
@@ -36,7 +57,7 @@ const Login = () => {
                         </div>
                         <div className="register-link m-t-15 text-center">
                             <p>Don't have account ? <a href="#"> Sign Up Here</a></p>
-                        </div> */}
+                        </div>
                         <button type="submit" className="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
                     </form>
                 </div>

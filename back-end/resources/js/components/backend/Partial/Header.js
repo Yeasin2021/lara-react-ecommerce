@@ -85,7 +85,7 @@ const Header = () => {
             <div className="col-sm-5">
                 <div className="user-area dropdown float-right">
                     <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img className="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar" />
+                        <img className="user-avatar rounded-circle" src="backend/images/admin.jpg" alt="User Avatar" />
                     </a>
 
                     <div className="user-menu dropdown-menu">
