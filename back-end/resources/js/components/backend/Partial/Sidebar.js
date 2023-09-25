@@ -40,9 +40,10 @@ const Sidebar = () => {
                         <li className="menu-item-has-children dropdown">
                             <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="menu-icon fa fa-table"></i>Tables</a>
                             <ul className="sub-menu children dropdown-menu">
-                                <li><i className="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
+                                {/* <li><i className="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li> */}
                                 <li><i className="fa fa-table"></i><Link to='/admin-banner'>Banner Table</Link></li>
-                                <li><i className="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
+                                <li><i className="fa fa-table"></i><Link to='/admin-feature'>Feature Table</Link></li>
+                                {/* <li><i className="fa fa-table"></i><a href="tables-data.html">Data Table</a></li> */}
                             </ul>
                         </li>
                         <li className="menu-item-has-children dropdown">
