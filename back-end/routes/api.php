@@ -20,6 +20,7 @@ use App\Http\Controllers\BannerController;
 
 
 Route::get('/frontend-banner', [BannerController::class,'index']);
+Route::get('feature', [FeatureAreaController::class,'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
