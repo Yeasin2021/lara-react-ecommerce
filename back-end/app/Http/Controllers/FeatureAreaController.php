@@ -37,9 +37,9 @@ class FeatureAreaController extends Controller
     public function store(Request $request)
     {
         $store = FeatureArea::create([
-            'icon' =>$request->feature_icon,
-            'header' =>$request->feature_header,
-            'details' =>$request->feature_details
+            'icon'=>$request->icon,
+            'header' =>$request->header,
+            'details' =>$request->details
         ]);
 
         return response()->json(['store'=>$store, 'status'=>200]);

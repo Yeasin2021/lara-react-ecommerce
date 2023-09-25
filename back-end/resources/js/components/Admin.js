@@ -6,6 +6,7 @@ import Login from './login/Login';
 import Dashboard from './backend/Dashboard';
 import Banner from './backend/pages/table/Banner';
 import FeatureAreaList from './backend/pages/table/FeatureAreaList';
+import FeatureArea from './backend/pages/form/FeatureArea';
 
 const Admin = () => {
 const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -28,6 +29,7 @@ useEffect(() => {
                     <Route path='/admin-dashboard' element={<Protected isLogedIn={isLoggedIn}><Dashboard /></Protected>}></Route>
                     <Route path='/admin-banner' element={<Protected isLogedIn={isLoggedIn}><Banner /></Protected>}></Route>
                     <Route path='/admin-feature' element={<Protected isLogedIn={isLoggedIn}><FeatureAreaList /></Protected>}></Route>
+                    <Route path='/admin-feature-form' element={<Protected isLogedIn={isLoggedIn}><FeatureArea /></Protected>}></Route>
                 </Route>
             </Routes>
         </Router>

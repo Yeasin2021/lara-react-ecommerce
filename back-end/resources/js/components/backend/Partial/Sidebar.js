@@ -49,7 +49,7 @@ const Sidebar = () => {
                         <li className="menu-item-has-children dropdown">
                             <a href="#" className="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i className="menu-icon fa fa-th"></i>Forms</a>
                             <ul className="sub-menu children dropdown-menu">
-                                <li><i className="menu-icon fa fa-th"></i><a href="forms-basic.html">Basic Form</a></li>
+                                <li><i className="menu-icon fa fa-th"></i><Link to="admin-feature-form">Feature Area</Link></li>
                                 <li><i className="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li>
                             </ul>
                         </li>
