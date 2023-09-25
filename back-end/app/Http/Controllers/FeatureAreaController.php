@@ -14,7 +14,8 @@ class FeatureAreaController extends Controller
      */
     public function index()
     {
-        //
+        $feature = FeatureArea::all();
+        return response()->json(['feature'=>$feature, 'status'=>200]);
     }
 
     /**

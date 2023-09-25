@@ -15,6 +15,9 @@ class CreateFeatureAreasTable extends Migration
     {
         Schema::create('feature_areas', function (Blueprint $table) {
             $table->id();
+            $table->string('icon')->nullable();
+            $table->string('header')->nullable();
+            $table->longText('details')->nullable();
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\FeatureAreaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::post('logout', [AuthenticationController::class,'logout']);
 
 
 Route::resource('banner', BannerController::class);
+Route::resource('feature', FeatureAreaController::class);
 
 
 
