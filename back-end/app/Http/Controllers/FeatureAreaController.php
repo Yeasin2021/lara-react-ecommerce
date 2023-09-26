@@ -93,8 +93,10 @@ class FeatureAreaController extends Controller
      * @param  \App\Models\FeatureArea  $featureArea
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FeatureArea $featureArea)
+    public function destroy($id)
     {
-        //
+        $delete = FeatureArea::find($id);
+        $delete->delete();
+        return response()->json(['delete'=>$delete, 'status'=>200]);
     }
 }

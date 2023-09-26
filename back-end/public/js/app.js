@@ -10732,6 +10732,37 @@ var FeatureAreaList = function FeatureAreaList() {
     }();
     data();
   }, []);
+  var deleteFeature = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(id) {
+      var newItems;
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) switch (_context2.prev = _context2.next) {
+          case 0:
+            if (!(window.confirm("Delete this Item") == true)) {
+              _context2.next = 7;
+              break;
+            }
+            _context2.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/feature/".concat(id));
+          case 3:
+            newItems = items.filter(function (item) {
+              return item.id !== id;
+            });
+            setItems(newItems);
+            _context2.next = 8;
+            break;
+          case 7:
+            console.log('Data not Deleted from this Record');
+          case 8:
+          case "end":
+            return _context2.stop();
+        }
+      }, _callee2);
+    }));
+    return function deleteFeature(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       "class": "content mt-3",
@@ -10786,14 +10817,20 @@ var FeatureAreaList = function FeatureAreaList() {
                           children: item.header
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
                           children: item.details
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("td", {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
                             to: "/admin-feature-edit/".concat(item.id),
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
                               className: "btn btn-primary",
                               children: "Edit"
                             })
-                          })
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+                            onClick: function onClick() {
+                              return deleteFeature(item.id);
+                            },
+                            className: "btn btn-danger ml-3",
+                            children: "Delete"
+                          })]
                         })]
                       });
                     })

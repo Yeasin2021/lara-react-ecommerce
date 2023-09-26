@@ -10,6 +10,22 @@ useEffect(()=>{
     }
     data();
 },[])
+
+const deleteFeature = async (id) =>{
+
+    if(window.confirm("Delete this Item") == true){
+        await axios.delete(`/feature/${id}`);
+        const newItems = items.filter((item)=>{
+        return item.id !== id;
+        });
+        setItems(newItems);
+    }else{
+        console.log('Data not Deleted from this Record')
+    }
+
+  }
+
+
   return (
     <div>
         <div class="content mt-3">
@@ -44,6 +60,7 @@ useEffect(()=>{
                                                             <Link to={`/admin-feature-edit/${item.id}`}>
                                                                 <button className='btn btn-primary'>Edit</button>
                                                             </Link>
+                                                            <button onClick={()=> deleteFeature(item.id)}  className='btn btn-danger ml-3'>Delete</button>
                                                         </td>
                                                     </tr>
                                                 )
