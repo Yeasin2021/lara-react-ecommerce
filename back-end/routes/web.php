@@ -30,6 +30,8 @@ Route::post('logout', [AuthenticationController::class,'logout']);
 
 Route::resource('banner', BannerController::class);
 Route::resource('feature', FeatureAreaController::class);
+Route::post('feature-update/{id}', [FeatureAreaController::class,'update']);
+
 
 
 

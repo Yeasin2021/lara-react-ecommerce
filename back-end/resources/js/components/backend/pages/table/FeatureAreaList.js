@@ -1,5 +1,6 @@
 import { useEffect, useState,React } from "react"
 import axios from "axios"
+import { Link } from 'react-router-dom';
 
 const FeatureAreaList = () => {
 const [items,setItems] = useState([]);
@@ -17,7 +18,7 @@ useEffect(()=>{
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Basic Table</strong>
+                                <strong class="card-title">Feature Table</strong>
                             </div>
                             <div class="card-body">
                                 <table class="table">
@@ -40,9 +41,9 @@ useEffect(()=>{
                                                         <td>{item.header}</td>
                                                         <td>{item.details}</td>
                                                         <td>
-                                                            {/* <Link to={`/admin-slider/${item.id}`}> */}
+                                                            <Link to={`/admin-feature-edit/${item.id}`}>
                                                                 <button className='btn btn-primary'>Edit</button>
-                                                            {/* </Link> */}
+                                                            </Link>
                                                         </td>
                                                     </tr>
                                                 )

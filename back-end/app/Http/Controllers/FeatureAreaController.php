@@ -62,9 +62,10 @@ class FeatureAreaController extends Controller
      * @param  \App\Models\FeatureArea  $featureArea
      * @return \Illuminate\Http\Response
      */
-    public function edit(FeatureArea $featureArea)
+    public function edit(FeatureArea $featureArea,$id)
     {
-        //
+        $edit = FeatureArea::find($id);
+        return response()->json(['edit'=>$edit,'status'=>200]);
     }
 
     /**
@@ -74,9 +75,16 @@ class FeatureAreaController extends Controller
      * @param  \App\Models\FeatureArea  $featureArea
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FeatureArea $featureArea)
+    public function update(Request $request, $id)
     {
-        //
+        $update = FeatureArea::find($id);
+        $update->update([
+            'icon'=>$request->icon,
+            'header' =>$request->header,
+            'details' =>$request->details
+        ]);
+
+        return response()->json(['update'=>$update, 'status'=>200]);
     }
 
     /**
