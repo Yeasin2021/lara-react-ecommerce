@@ -29,6 +29,7 @@ Route::post('logout', [AuthenticationController::class,'logout']);
 
 
 Route::resource('banner', BannerController::class);
+Route::post('banner-update/{id}', [BannerController::class,'update']);
 Route::resource('feature', FeatureAreaController::class);
 Route::post('feature-update/{id}', [FeatureAreaController::class,'update']);
 

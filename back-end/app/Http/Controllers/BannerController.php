@@ -56,9 +56,10 @@ class BannerController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Banner $banner)
+    public function edit($id)
     {
-        //
+        $edit = Banner::find($id);
+        return response()->json(['edit'=>$edit,'status'=>200]);
     }
 
     /**
@@ -68,9 +69,28 @@ class BannerController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Banner $banner)
+    public function update(Request $request, $id)
     {
-        //
+        $update = Banner::find($id);
+
+
+        $images = $request->file('bannerImage');
+        // dd($images);
+        if($images){
+            $fileName = 'banner'.'-'.'bg'.'.'.$images->extension();
+            $images->move(public_path('frontend/img/banner'),$fileName);
+        }
+
+        $update->update([
+            'title'=>$request->title,
+            'first_header'=>$request->first_header,
+            'second_header'=>$request->second_header,
+            'third_header'=>$request->third_header,
+            'banner_image'=>$fileName
+        ]);
+
+        // dd( $update);
+        return response()->json(['update'=>$update,'status'=>200]);
     }
 
     /**

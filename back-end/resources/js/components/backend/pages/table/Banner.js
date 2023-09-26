@@ -1,5 +1,6 @@
 import { useEffect, useState,React } from "react"
 import axios from "axios"
+import { Link } from "react-router-dom";
 
 const Banner = () => {
 const [item,setItem] = useState([]);
@@ -43,9 +44,9 @@ useEffect(()=>{
                                                 <img width="70px" height="70px" src={`frontend/img/banner/${item.banner_image}`} />
                                              </td>
                                              <td>
-                                                {/* <Link to={`/admin-slider/${item.id}`}> */}
+                                                <Link to={`/admin-banner-edit/${item.id}`}>
                                                     <button className='btn btn-primary'>Edit</button>
-                                                {/* </Link> */}
+                                                </Link>
                                              </td>
                                             {/* style={{ backgroundImage: `url(backend/assets/images/slider/${(items.slider_image)})` }} */}
                                         </tr>
