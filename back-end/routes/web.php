@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FeatureAreaController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::resource('banner', BannerController::class);
 Route::post('banner-update/{id}', [BannerController::class,'update']);
 Route::resource('feature', FeatureAreaController::class);
 Route::post('feature-update/{id}', [FeatureAreaController::class,'update']);
+Route::resource('category', CategoryController::class);
 
 
 
