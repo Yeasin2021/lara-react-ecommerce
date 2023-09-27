@@ -14,7 +14,7 @@ useEffect(()=>{
 const deleteCategory = async (id) =>{
 
     if(window.confirm("Delete this Item") == true){
-        await axios.delete(`/feature/${id}`);
+        await axios.delete(`/category/${id}`);
         const newItems = items.filter((item)=>{
         return item.id !== id;
         });
@@ -24,6 +24,8 @@ const deleteCategory = async (id) =>{
     }
 
   }
+
+  const changeStatus = async (id) =>{}
 
 
   return (
@@ -44,7 +46,7 @@ const deleteCategory = async (id) =>{
                                             <th scope="col">Category</th>
                                             <th scope="col">Category Description</th>
                                             <th scope="col">Status</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col" style={{ textAlign:'center' }}>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -55,12 +57,13 @@ const deleteCategory = async (id) =>{
                                                         <th scope="row">{item.id}</th>
                                                         <td>{item.category}</td>
                                                         <td>{item.category_description}</td>
-                                                        <td>{item.status}</td>
-                                                        <td>
+                                                        <td>{item.status == 1 ? 'Published':'Unpublished'}</td>
+                                                        <td style={{ textAlign:'center' }}>
                                                             <Link to={`/admin-feature-edit/${item.id}`}>
                                                                 <button className='btn btn-primary'>Edit</button>
                                                             </Link>
-                                                            {/* <button onClick={()=> deleteCategory(item.id)}  className='btn btn-danger ml-3'>Delete</button> */}
+                                                            <button onClick={()=> deleteCategory(item.id)}  className='btn btn-danger ml-3'>Delete</button>
+                                                            <button onClick={()=> changeStatus(item.id)} className="ml-3"><i className={item.status === 1 ? "fa fa-arrow-up" : "fa fa-arrow-down"}></i></button>
                                                         </td>
                                                     </tr>
                                                 )

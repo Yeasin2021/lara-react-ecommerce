@@ -11195,7 +11195,7 @@ var Category = function Category() {
               break;
             }
             _context2.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/feature/".concat(id));
+            return axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"]("/category/".concat(id));
           case 3:
             newItems = items.filter(function (item) {
               return item.id !== id;
@@ -11213,6 +11213,20 @@ var Category = function Category() {
     }));
     return function deleteCategory(_x) {
       return _ref2.apply(this, arguments);
+    };
+  }();
+  var changeStatus = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(id) {
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3);
+    }));
+    return function changeStatus(_x2) {
+      return _ref3.apply(this, arguments);
     };
   }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -11252,6 +11266,9 @@ var Category = function Category() {
                         children: "Status"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
                         scope: "col",
+                        style: {
+                          textAlign: 'center'
+                        },
                         children: "Action"
                       })]
                     })
@@ -11266,15 +11283,32 @@ var Category = function Category() {
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
                           children: item.category_description
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-                          children: item.status
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+                          children: item.status == 1 ? 'Published' : 'Unpublished'
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("td", {
+                          style: {
+                            textAlign: 'center'
+                          },
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
                             to: "/admin-feature-edit/".concat(item.id),
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
                               className: "btn btn-primary",
                               children: "Edit"
                             })
-                          })
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+                            onClick: function onClick() {
+                              return deleteCategory(item.id);
+                            },
+                            className: "btn btn-danger ml-3",
+                            children: "Delete"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+                            onClick: function onClick() {
+                              return changeStatus(item.id);
+                            },
+                            className: "ml-3",
+                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+                              className: item.status === 1 ? "fa fa-arrow-up" : "fa fa-arrow-down"
+                            })
+                          })]
                         })]
                       });
                     })
