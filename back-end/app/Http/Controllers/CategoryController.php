@@ -86,6 +86,27 @@ class CategoryController extends Controller
         return response()->json(['update'=>$update,'status'=>200]);
     }
 
+
+
+    public function categoryStatus($id){
+        $Category = Category::find($id);
+
+        if($Category->status == 1){
+            $Category->update([
+                'status' => 0,
+            ]);
+            return response()->json(['Category'=>$Category,'status'=>200]);
+        }else{
+            $Category->update([
+                'status' => 1,
+            ]);
+            return response()->json(['Category'=>$Category,'status'=>200]);
+        }
+
+     }
+
+    
+
     /**
      * Remove the specified resource from storage.
      *
