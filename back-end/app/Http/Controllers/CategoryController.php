@@ -62,9 +62,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $edit = Category::find($id);
+        return response()->json(['edit'=>$edit,'status'=>200]);
     }
 
     /**
@@ -74,9 +75,15 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $update = Category::find($id);
+        $update->update([
+            'category' => $request->category,
+            'category_description' => $request->category_description,
+            'status' => $request->status
+        ]);
+        return response()->json(['update'=>$update,'status'=>200]);
     }
 
     /**
@@ -85,8 +92,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        // $delete = Category::find($id);
+        // $delete->delete();
+        // return response()->json(['delete'=>$delete,'status'=>200]);
     }
 }

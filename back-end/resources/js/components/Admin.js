@@ -11,6 +11,7 @@ import FeatureAreaEdit from './backend/pages/form/FeatureAreaEdit';
 import BannerEdit from './backend/pages/form/BannerEdit';
 import CategoryForm from './backend/pages/form/CategoryForm';
 import Category from './backend/pages/table/Category';
+import CategoryEdit from './backend/pages/form/CategoryEdit';
 
 const Admin = () => {
 const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -38,6 +39,7 @@ useEffect(() => {
                     <Route path='/admin-feature-edit/:id' element={<Protected isLogedIn={isLoggedIn}><FeatureAreaEdit /></Protected>}></Route>
                     <Route path='/admin-category' element={<Protected isLogedIn={isLoggedIn}><Category /></Protected>}></Route>
                     <Route path='/admin-category-form' element={<Protected isLogedIn={isLoggedIn}><CategoryForm /></Protected>}></Route>
+                    <Route path='/admin-category-edit/:id' element={<Protected isLogedIn={isLoggedIn}><CategoryEdit /></Protected>}></Route>
                 </Route>
             </Routes>
         </Router>

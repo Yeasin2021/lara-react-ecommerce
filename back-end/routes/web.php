@@ -34,6 +34,7 @@ Route::post('banner-update/{id}', [BannerController::class,'update']);
 Route::resource('feature', FeatureAreaController::class);
 Route::post('feature-update/{id}', [FeatureAreaController::class,'update']);
 Route::resource('category', CategoryController::class);
+Route::post('category-update/{id}', [CategoryController::class,'update']);
 
 
 
