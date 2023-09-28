@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Category = () => {
 const [items,setItems] = useState([]);
-const [status,setStatus] = useState([]);
+const [status, setStatus] = useState(0);
 useEffect(()=>{
     const data = async () =>{
         const response = await axios.get('/category').then((res)=>setItems(res.data.category));
@@ -27,16 +27,21 @@ const deleteCategory = async (id) =>{
   }
 
   const changeStatus = async (id) =>{
-    // await axios.post(`/category-status/${id}`).then((res)=>setStatus(e.target.value));
-    try {
-        const response = await axios.post(`/category-status/${id}`);
-        const updatedStatus = response.data.status; // Assuming the response contains the updated status
-        setStatus(updatedStatus);
-      } catch (error) {
-        console.error(error);
-      }
+    const response = await axios.post(`/category-status/${id}`).then((res)=>setStatus(res.data.status));
+    // const response = await axios.post(`/category-status/${id}`).then((res)=>setStatus(e.target.value));
 
   }
+
+
+  const updateStatus = async () => {
+    try {
+      const response =  await axios.post(`/category-status/${id}`);
+      const newStatus = response.data.status; // Assuming the response contains the updated status
+      setStatus(newStatus);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 
   return (
@@ -69,7 +74,7 @@ const deleteCategory = async (id) =>{
                                                         <td>{item.category}</td>
                                                         <td>{item.category_description}</td>
                                                         <td>{item.status == 1 ? 'Published':'Unpublished'}</td>
-                                                        {/* <td>{status == 1 ? 'Published':'Unpublished'}</td> */}
+                                                        {/* <td>{status  == 1 ? 'Published':'Unpublished'}</td> */}
                                                         <td style={{ textAlign:'center' }}>
                                                             <Link to={`/admin-category-edit/${item.id}`}>
                                                                 <button className='btn btn-primary'>Edit</button>

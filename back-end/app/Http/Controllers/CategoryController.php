@@ -105,7 +105,7 @@ class CategoryController extends Controller
 
      }
 
-    
+
 
     /**
      * Remove the specified resource from storage.
@@ -115,8 +115,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        // $delete = Category::find($id);
-        // $delete->delete();
-        // return response()->json(['delete'=>$delete,'status'=>200]);
+        $delete = Category::find($id);
+        $delete->delete();
+        return response()->json(['delete'=>$delete,'status'=>200]);
     }
 }

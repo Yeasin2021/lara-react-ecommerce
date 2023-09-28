@@ -11369,7 +11369,7 @@ var Category = function Category() {
     _useState2 = _slicedToArray(_useState, 2),
     items = _useState2[0],
     setItems = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState4 = _slicedToArray(_useState3, 2),
     status = _useState4[0],
     setStatus = _useState4[1];
@@ -11431,31 +11431,53 @@ var Category = function Category() {
   }();
   var changeStatus = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(id) {
-      var response, updatedStatus;
+      var response;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
           case 0:
-            _context3.prev = 0;
-            _context3.next = 3;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/category-status/".concat(id));
-          case 3:
+            _context3.next = 2;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/category-status/".concat(id)).then(function (res) {
+              return setStatus(res.data.status);
+            });
+          case 2:
             response = _context3.sent;
-            updatedStatus = response.data.status; // Assuming the response contains the updated status
-            setStatus(updatedStatus);
-            _context3.next = 11;
-            break;
-          case 8:
-            _context3.prev = 8;
-            _context3.t0 = _context3["catch"](0);
-            console.error(_context3.t0);
-          case 11:
+          case 3:
           case "end":
             return _context3.stop();
         }
-      }, _callee3, null, [[0, 8]]);
+      }, _callee3);
     }));
     return function changeStatus(_x2) {
       return _ref3.apply(this, arguments);
+    };
+  }();
+  var updateStatus = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      var response, newStatus;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.prev = 0;
+            _context4.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/category-status/".concat(id));
+          case 3:
+            response = _context4.sent;
+            newStatus = response.data.status; // Assuming the response contains the updated status
+            setStatus(newStatus);
+            _context4.next = 11;
+            break;
+          case 8:
+            _context4.prev = 8;
+            _context4.t0 = _context4["catch"](0);
+            console.error(_context4.t0);
+          case 11:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4, null, [[0, 8]]);
+    }));
+    return function updateStatus() {
+      return _ref4.apply(this, arguments);
     };
   }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
