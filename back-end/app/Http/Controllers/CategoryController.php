@@ -36,6 +36,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $store = Category::create([
             'category' => $request->category,
             'category_description' => $request->category_description,

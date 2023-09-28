@@ -42,10 +42,18 @@ const onSubmitForm = async(e) =>{
                                 <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
                                 <input type="text" id="input1-group1" name="category_description"  onChange={(e)=>setDescription(e.target.value)} placeholder="Category Description" className="form-control" />
                             </div><br></br>
-                            <div className="input-group">
-                                <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
-                                <input type="text" id="input1-group1" name="status"  onChange={(e)=>setStatus(e.target.value)}  className="form-control" />
+                            {/* <div className="input-group">
+                                <label>Published</label>
+                                <input type="radio" id="input1-group1" name="status" value='1'  onChange={(e)=>setStatus(e.target.value)}  className="form-control" />
+                                <label>Unpublished</label>
+                                <input type="radio" id="input1-group2" name="status" value='0'  onChange={(e)=>setStatus(e.target.value)}  className="form-control" />
+                            </div> */}
+
+                            <div class="form-check-inline form-check">
+                                <label htmlFor="inline-radio1" className="form-check-label"> <input type="radio" name="status" value="1" className="form-check-input"  onChange={(e)=>setStatus(e.target.value)} />Published </label>
+                                <label htmlFor="inline-radio2" className="form-check-label ml-2"> <input type="radio" name="status" value="0" className="form-check-input"  onChange={(e)=>setStatus(e.target.value)} />Unpublished </label>
                             </div>
+
                         </div>
                     </div>
 

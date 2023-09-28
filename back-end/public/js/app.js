@@ -10566,20 +10566,31 @@ var CategoryForm = function CategoryForm() {
                     className: "form-control"
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                  className: "input-group",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                    className: "input-group-addon",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
-                      className: "fa fa-file-text-o"
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                    type: "text",
-                    id: "input1-group1",
-                    name: "status",
-                    onChange: function onChange(e) {
-                      return setStatus(e.target.value);
-                    },
-                    className: "form-control"
+                  "class": "form-check-inline form-check",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+                    htmlFor: "inline-radio1",
+                    className: "form-check-label",
+                    children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                      type: "radio",
+                      name: "status",
+                      value: "1",
+                      className: "form-check-input",
+                      onChange: function onChange(e) {
+                        return setStatus(e.target.value);
+                      }
+                    }), "Published "]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+                    htmlFor: "inline-radio2",
+                    className: "form-check-label ml-2",
+                    children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                      type: "radio",
+                      name: "status",
+                      value: "0",
+                      className: "form-check-input",
+                      onChange: function onChange(e) {
+                        return setStatus(e.target.value);
+                      }
+                    }), "Unpublished "]
                   })]
                 })]
               })
