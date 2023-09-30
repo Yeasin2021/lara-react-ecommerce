@@ -75,7 +75,7 @@ const deleteCategory = async (id) =>{
                                                         <td>{item.brand_description}</td>
                                                         <td>{item.status == 1 ? 'Published':'Unpublished'}</td>
                                                         <td style={{ textAlign:'center' }}>
-                                                            <Link to={`/admin-category-edit/${item.id}`}>
+                                                            <Link to={`/admin-brand-edit/${item.id}`}>
                                                                 <button className='btn btn-primary'>Edit</button>
                                                             </Link>
                                                             <button onClick={()=> deleteCategory(item.id)}  className='btn btn-danger ml-3'>Delete</button>

@@ -40,6 +40,7 @@ Route::post('category-update/{id}', [CategoryController::class,'update']);
 Route::post('category-status/{id}', [CategoryController::class,'categoryStatus']);
 
 Route::resource('brand', BrandController::class);
+Route::post('brand-update/{id}', [BrandController::class,'update']);
 
 
 

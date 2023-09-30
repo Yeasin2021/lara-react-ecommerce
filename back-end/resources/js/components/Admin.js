@@ -14,6 +14,7 @@ import Category from './backend/pages/table/Category';
 import CategoryEdit from './backend/pages/form/CategoryEdit';
 import Brand from './backend/pages/table/Brand';
 import BrandForm from './backend/pages/form/BrandForm';
+import BrandEdit from './backend/pages/form/BrandEdit';
 
 const Admin = () => {
 const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -44,6 +45,7 @@ useEffect(() => {
                     <Route path='/admin-category-edit/:id' element={<Protected isLogedIn={isLoggedIn}><CategoryEdit /></Protected>}></Route>
                     <Route path='/admin-brand' element={<Protected isLogedIn={isLoggedIn}><Brand /></Protected>}></Route>
                     <Route path='/admin-brand-form' element={<Protected isLogedIn={isLoggedIn}><BrandForm /></Protected>}></Route>
+                    <Route path='/admin-brand-edit/:id' element={<Protected isLogedIn={isLoggedIn}><BrandEdit /></Protected>}></Route>
                 </Route>
             </Routes>
         </Router>

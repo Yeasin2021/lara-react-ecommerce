@@ -62,9 +62,10 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit($id)
     {
-        //
+        $edit = Brand::find($id);
+        return response()->json(['edit'=>$edit,'status'=>200]);
     }
 
     /**
@@ -74,9 +75,15 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request, $id)
     {
-        //
+        $update = Brand::find($id);
+        $update->update([
+            'brand' => $request->brand,
+            'brand_description' => $request->brand_description,
+            // 'status' => $request->status
+        ]);
+        return response()->json(['update'=>$update,'status'=>200]);
     }
 
     /**
