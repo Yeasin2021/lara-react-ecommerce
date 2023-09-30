@@ -15,7 +15,8 @@ class BrandController extends Controller
     public function index()
     {
         $brand = Brand::all();
-        return response()->json(['brand'=>$brand,'status'=>200]);
+        $brands = Brand::where('status',1)->get();
+        return response()->json(['brand'=>$brand, 'brands'=>$brands,  'status'=>200]);
     }
 
     /**

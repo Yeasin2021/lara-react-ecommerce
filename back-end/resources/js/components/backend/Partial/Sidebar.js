@@ -54,6 +54,7 @@ const Sidebar = () => {
                                 <li><i className="menu-icon fa fa-th"></i><Link to="admin-feature-form">Feature Area</Link></li>
                                 <li><i className="menu-icon fa fa-th"></i><Link to="admin-category-form">Category</Link></li>
                                 <li><i className="menu-icon fa fa-th"></i><Link to="admin-brand-form">Brand</Link></li>
+                                <li><i className="menu-icon fa fa-th"></i><Link to="admin-product-form">Product</Link></li>
                                 {/* <li><i className="menu-icon fa fa-th"></i><a href="forms-advanced.html">Advanced Form</a></li> */}
 
                             </ul>
