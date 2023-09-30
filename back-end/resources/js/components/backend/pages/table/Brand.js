@@ -2,12 +2,12 @@ import { useEffect, useState,React } from "react"
 import axios from "axios"
 import { Link } from 'react-router-dom';
 
-const Category = () => {
+const Brand = () => {
 const [items,setItems] = useState([]);
 const [status, setStatus] = useState([]);
 useEffect(()=>{
     const data = async () =>{
-        const response = await axios.get('/category').then((res)=>setItems(res.data.category));
+        const response = await axios.get('/brand').then((res)=>setItems(res.data.brand));
     }
     data();
 },[])
@@ -15,7 +15,7 @@ useEffect(()=>{
 const deleteCategory = async (id) =>{
 
     if(window.confirm("Delete this Item") == true){
-        await axios.delete(`/category/${id}`);
+        await axios.delete(`/brand/${id}`);
         const newItems = items.filter((item)=>{
         return item.id !== id;
         });
@@ -31,10 +31,10 @@ const deleteCategory = async (id) =>{
 
     if(window.confirm("Update this Item ?") == true){
         // Status update code
-        await axios.post(`/category-status/${id}`);
+        await axios.post(`/brand-status/${id}`);
         // live status show (code)
         const data = async () =>{
-        const response = await axios.get('/category').then((res)=>setItems(res.data.category));
+        const response = await axios.get('/brand').then((res)=>setItems(res.data.brand));
         }
         data();
     }else{
@@ -52,15 +52,15 @@ const deleteCategory = async (id) =>{
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Category Table</strong>
+                                <strong class="card-title">Brand Table</strong>
                             </div>
                             <div class="card-body">
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             <th scope="col">Id</th>
-                                            <th scope="col">Category</th>
-                                            <th scope="col">Category Description</th>
+                                            <th scope="col">Brand</th>
+                                            <th scope="col">Brand Description</th>
                                             <th scope="col">Status</th>
                                             <th scope="col" style={{ textAlign:'center' }}>Action</th>
                                         </tr>
@@ -71,8 +71,8 @@ const deleteCategory = async (id) =>{
                                                 return(
                                                     <tr>
                                                         <th scope="row">{item.id}</th>
-                                                        <td>{item.category}</td>
-                                                        <td>{item.category_description}</td>
+                                                        <td>{item.brand}</td>
+                                                        <td>{item.brand_description}</td>
                                                         <td>{item.status == 1 ? 'Published':'Unpublished'}</td>
                                                         <td style={{ textAlign:'center' }}>
                                                             <Link to={`/admin-category-edit/${item.id}`}>
@@ -98,4 +98,4 @@ const deleteCategory = async (id) =>{
   )
 }
 
-export default Category
+export default Brand
