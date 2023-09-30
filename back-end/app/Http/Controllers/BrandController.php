@@ -36,7 +36,13 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $store = Brand::create([
+            'brand' => $request->brand,
+            'brand_description' => $request->brand_description,
+            'status' => $request->status
+        ]);
+        return response()->json(['store'=>$store,'status'=>200]);
     }
 
     /**
