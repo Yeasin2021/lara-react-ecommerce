@@ -4,10 +4,26 @@ import { useNavigate, Link } from 'react-router-dom';
 
 const ProductForm = () => {
 const navigate = useNavigate();
+
+// set State for Image Preview and get Image name
+const [file, setFile] = useState(); //image preview
+const [image,setImage] = useState([]); //Image name
+
 const [brands,setBrands] = useState([]);
 const [categories,setCategories] = useState([]);
-// const [description,setDescription] = useState([]);
-// const [status,setStatus] = useState([]);
+const [productName,setProductName] = useState([]);
+const [productPrice,setProductPrice] = useState([]);
+const [productQuantity,setProductQuantity] = useState([]);
+const [shortDescription,setShortDescription] = useState([]);
+const [longDescription,setLongDescription] = useState([]);
+const [status,setStatus] = useState([]);
+
+
+const imageHandaler = (e) =>{
+    console.log(e.target.files);
+    setImage(e.target.files[0]);
+    setFile(URL.createObjectURL(e.target.files[0]));
+}
 
 
 useEffect(()=>{
@@ -15,15 +31,20 @@ useEffect(()=>{
     const categoryData = axios.get('/category').then((response)=>setCategories(response.data.categories));
 },[])
 
+
+
+
 const onSubmitForm = async(e) =>{
     e.preventDefault();
     try{
 
         const formData = new FormData();
-        formData.append('brand',brand);
-        formData.append('brand_description',description);
-        formData.append('status',status);
-        await axios.post('brand',formData);
+        // formData.append('brand',brand);
+
+        // formData.append('brand_description',description);
+        // formData.append('status',status);
+        formData.append('product_name',productName);
+        await axios.post('/',formData);
         navigate("/admin-brand");
     }catch(error){
         console.log(error.message);
@@ -49,14 +70,14 @@ const onSubmitForm = async(e) =>{
                                         {
                                             categories && categories.map((category)=>{
                                                 return(
-                                                    <option value="2">{category.category}</option>
+                                                    <option value={category.id}>{category.category}</option>
                                                 )
                                             })
                                         }
 
                                     </select>
                                 </div>
-                            </div>
+                        </div>
                         <div className="row form-group">
                             <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Brand select</label></div>
                                 <div className="col col-md-9">
@@ -65,29 +86,82 @@ const onSubmitForm = async(e) =>{
                                     {
                                             brands && brands.map((brand)=>{
                                                 return(
-                                                    <option value="2">{brand.brand}</option>
+                                                    <option value={brand.id}>{brand.brand}</option>
                                                 )
                                             })
                                         }
 
                                     </select>
                                 </div>
-                            </div>
-                            {/* <div className="input-group">
-                            <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Category select</label></div>
-                                <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
-                                <input type="text" id="input1-group1" name="brand"  onChange={(e)=>setBrand(e.target.value)} placeholder="Enter Brand" className="form-control" />
-                            </div><br></br>
-                            <div className="input-group">
-                                <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
-                                <input type="text" id="input1-group1" name="brand_description"  onChange={(e)=>setDescription(e.target.value)} placeholder="Brand Description" className="form-control" />
-                            </div><br></br>
+                        </div>
 
+                        <div className="row form-group">
+                            <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Product Name</label></div>
+                                <div className="col col-md-9">
+                                    <div className="input-group">
+                                    <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
+                                    <input type="text" id="input1-group1" name="product_name"  onChange={(e)=>setProductName(e.target.value)} placeholder="Product Name" className="form-control" />
+                                    </div>
+                                </div>
+                        </div>
+                        <div className="row form-group">
+                            <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Product Price</label></div>
+                                <div className="col col-md-9">
+                                    <div className="input-group">
+                                    <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
+                                    <input type="text" id="input1-group1" name="product_price"  onChange={(e)=>setProductPrice(e.target.value)} placeholder="Product Price" className="form-control" />
+                                    </div>
+                                </div>
+                        </div>
+                        <div className="row form-group">
+                            <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Product Quantity</label></div>
+                                <div className="col col-md-9">
+                                    <div className="input-group">
+                                    <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
+                                    <input type="text" id="input1-group1" name="product_quantity"  onChange={(e)=>setProductQuantity(e.target.value)} placeholder="Product Quantity" className="form-control" />
+                                    </div>
+                                </div>
+                        </div>
+                        <div className="row form-group">
+                            <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Short Description</label></div>
+                                <div className="col col-md-9">
+                                    <div className="input-group">
+                                    <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
+                                    <input type="text" id="input1-group1" name="short_description"  onChange={(e)=>setShortDescription(e.target.value)} placeholder="Short Description" className="form-control" />
+                                    </div>
+                                </div>
+                        </div>
+                        <div className="row form-group">
+                            <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Long Description</label></div>
+                                <div className="col col-md-9">
+                                    <div className="input-group">
+                                    <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
+                                    <input type="text" id="input1-group1" name="long_description"  onChange={(e)=>setLongDescription(e.target.value)} placeholder="Long Description" className="form-control" />
+                                    </div>
+                                </div>
+                        </div>
+                        <div className="row form-group">
+                            <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Product  Image</label></div>
+                                <div className="col col-md-9">
+                                    <div className="input-group">
+                                    <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
+                                    <input type="file" id="input1-group1" name="product_image"  onChange={imageHandaler}  className="form-control" />
+                                     {/* <div style={{ maxWidth: '30%'}}><img src={file}  /></div> */}
+                                     <img src={file}  />
 
-                            <div class="form-check-inline form-check">
-                                <label htmlFor="inline-radio1" className="form-check-label"> <input type="radio" name="status" value="1" className="form-check-input"  onChange={(e)=>setStatus(e.target.value)} />Published </label>
-                                <label htmlFor="inline-radio2" className="form-check-label ml-2"> <input type="radio" name="status" value="0" className="form-check-input"  onChange={(e)=>setStatus(e.target.value)} />Unpublished </label>
-                            </div> */}
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div className="row form-group">
+                            <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Product Status</label></div>
+                                <div className="col col-md-9">
+                                    <div class="form-check-inline form-check">
+                                    <label htmlFor="inline-radio1" className="form-check-label"> <input type="radio" name="status" value="1" className="form-check-input"  onChange={(e)=>setStatus(e.target.value)} />Published </label>
+                                    <label htmlFor="inline-radio2" className="form-check-label ml-2"> <input type="radio" name="status" value="0" className="form-check-input"  onChange={(e)=>setStatus(e.target.value)} />Unpublished </label>
+                                    </div>
+                                </div>
+                        </div>
 
                         </div>
                     </div>

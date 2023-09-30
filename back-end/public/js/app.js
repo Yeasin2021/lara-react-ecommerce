@@ -11616,17 +11616,54 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var ProductForm = function ProductForm() {
   var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useNavigate)();
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+
+  // set State for Image Preview and get Image name
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
     _useState2 = _slicedToArray(_useState, 2),
-    brands = _useState2[0],
-    setBrands = _useState2[1];
+    file = _useState2[0],
+    setFile = _useState2[1]; //image preview
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState4 = _slicedToArray(_useState3, 2),
-    categories = _useState4[0],
-    setCategories = _useState4[1];
-  // const [description,setDescription] = useState([]);
-  // const [status,setStatus] = useState([]);
+    image = _useState4[0],
+    setImage = _useState4[1]; //Image name
 
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState6 = _slicedToArray(_useState5, 2),
+    brands = _useState6[0],
+    setBrands = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState8 = _slicedToArray(_useState7, 2),
+    categories = _useState8[0],
+    setCategories = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState10 = _slicedToArray(_useState9, 2),
+    productName = _useState10[0],
+    setProductName = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState12 = _slicedToArray(_useState11, 2),
+    productPrice = _useState12[0],
+    setProductPrice = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState14 = _slicedToArray(_useState13, 2),
+    productQuantity = _useState14[0],
+    setProductQuantity = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState16 = _slicedToArray(_useState15, 2),
+    shortDescription = _useState16[0],
+    setShortDescription = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState18 = _slicedToArray(_useState17, 2),
+    longDescription = _useState18[0],
+    setLongDescription = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState20 = _slicedToArray(_useState19, 2),
+    status = _useState20[0],
+    setStatus = _useState20[1];
+  var imageHandaler = function imageHandaler(e) {
+    console.log(e.target.files);
+    setImage(e.target.files[0]);
+    setFile(URL.createObjectURL(e.target.files[0]));
+  };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var brandData = axios__WEBPACK_IMPORTED_MODULE_1___default().get('/brand').then(function (response) {
       return setBrands(response.data.brands);
@@ -11643,25 +11680,25 @@ var ProductForm = function ProductForm() {
           case 0:
             e.preventDefault();
             _context.prev = 1;
-            formData = new FormData();
-            formData.append('brand', brand);
-            formData.append('brand_description', description);
-            formData.append('status', status);
-            _context.next = 8;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('brand', formData);
-          case 8:
+            formData = new FormData(); // formData.append('brand',brand);
+            // formData.append('brand_description',description);
+            // formData.append('status',status);
+            formData.append('product_name', productName);
+            _context.next = 6;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/', formData);
+          case 6:
             navigate("/admin-brand");
-            _context.next = 14;
+            _context.next = 12;
             break;
-          case 11:
-            _context.prev = 11;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context["catch"](1);
             console.log(_context.t0.message);
-          case 14:
+          case 12:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[1, 11]]);
+      }, _callee, null, [[1, 9]]);
     }));
     return function onSubmitForm(_x) {
       return _ref.apply(this, arguments);
@@ -11706,7 +11743,7 @@ var ProductForm = function ProductForm() {
                         children: "-----Select Category-----"
                       }), categories && categories.map(function (category) {
                         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                          value: "2",
+                          value: category.id,
                           children: category.category
                         });
                       })]
@@ -11733,9 +11770,228 @@ var ProductForm = function ProductForm() {
                         children: "-----Select Brand-----"
                       }), brands && brands.map(function (brand) {
                         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                          value: "2",
+                          value: brand.id,
                           children: brand.brand
                         });
+                      })]
+                    })
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                  className: "row form-group",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "col col-md-3",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                      "for": "multiple-select",
+                      className: " form-control-label",
+                      children: "Product Name"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "col col-md-9",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                      className: "input-group",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                        className: "input-group-addon",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+                          className: "fa fa-file-text-o"
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                        type: "text",
+                        id: "input1-group1",
+                        name: "product_name",
+                        onChange: function onChange(e) {
+                          return setProductName(e.target.value);
+                        },
+                        placeholder: "Product Name",
+                        className: "form-control"
+                      })]
+                    })
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                  className: "row form-group",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "col col-md-3",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                      "for": "multiple-select",
+                      className: " form-control-label",
+                      children: "Product Price"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "col col-md-9",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                      className: "input-group",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                        className: "input-group-addon",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+                          className: "fa fa-file-text-o"
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                        type: "text",
+                        id: "input1-group1",
+                        name: "product_price",
+                        onChange: function onChange(e) {
+                          return setProductPrice(e.target.value);
+                        },
+                        placeholder: "Product Price",
+                        className: "form-control"
+                      })]
+                    })
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                  className: "row form-group",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "col col-md-3",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                      "for": "multiple-select",
+                      className: " form-control-label",
+                      children: "Product Quantity"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "col col-md-9",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                      className: "input-group",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                        className: "input-group-addon",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+                          className: "fa fa-file-text-o"
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                        type: "text",
+                        id: "input1-group1",
+                        name: "product_quantity",
+                        onChange: function onChange(e) {
+                          return setProductQuantity(e.target.value);
+                        },
+                        placeholder: "Product Quantity",
+                        className: "form-control"
+                      })]
+                    })
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                  className: "row form-group",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "col col-md-3",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                      "for": "multiple-select",
+                      className: " form-control-label",
+                      children: "Short Description"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "col col-md-9",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                      className: "input-group",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                        className: "input-group-addon",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+                          className: "fa fa-file-text-o"
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                        type: "text",
+                        id: "input1-group1",
+                        name: "short_description",
+                        onChange: function onChange(e) {
+                          return setShortDescription(e.target.value);
+                        },
+                        placeholder: "Short Description",
+                        className: "form-control"
+                      })]
+                    })
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                  className: "row form-group",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "col col-md-3",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                      "for": "multiple-select",
+                      className: " form-control-label",
+                      children: "Long Description"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "col col-md-9",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                      className: "input-group",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                        className: "input-group-addon",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+                          className: "fa fa-file-text-o"
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                        type: "text",
+                        id: "input1-group1",
+                        name: "long_description",
+                        onChange: function onChange(e) {
+                          return setLongDescription(e.target.value);
+                        },
+                        placeholder: "Long Description",
+                        className: "form-control"
+                      })]
+                    })
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                  className: "row form-group",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "col col-md-3",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                      "for": "multiple-select",
+                      className: " form-control-label",
+                      children: "Product  Image"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "col col-md-9",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                      className: "input-group",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                        className: "input-group-addon",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+                          className: "fa fa-file-text-o"
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                        type: "file",
+                        id: "input1-group1",
+                        name: "product_image",
+                        onChange: imageHandaler,
+                        className: "form-control"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+                        src: file
+                      })]
+                    })
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                  className: "row form-group",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "col col-md-3",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
+                      "for": "multiple-select",
+                      className: " form-control-label",
+                      children: "Product Status"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                    className: "col col-md-9",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                      "class": "form-check-inline form-check",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+                        htmlFor: "inline-radio1",
+                        className: "form-check-label",
+                        children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                          type: "radio",
+                          name: "status",
+                          value: "1",
+                          className: "form-check-input",
+                          onChange: function onChange(e) {
+                            return setStatus(e.target.value);
+                          }
+                        }), "Published "]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+                        htmlFor: "inline-radio2",
+                        className: "form-check-label ml-2",
+                        children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                          type: "radio",
+                          name: "status",
+                          value: "0",
+                          className: "form-check-input",
+                          onChange: function onChange(e) {
+                            return setStatus(e.target.value);
+                          }
+                        }), "Unpublished "]
                       })]
                     })
                   })]
