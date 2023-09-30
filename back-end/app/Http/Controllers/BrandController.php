@@ -86,6 +86,24 @@ class BrandController extends Controller
         return response()->json(['update'=>$update,'status'=>200]);
     }
 
+
+    public function brandStatus($id)
+    {
+        $brand = Brand::find($id);
+
+        if($brand->status == 1){
+            $brand->update([
+                'status' => 0,
+            ]);
+            return response()->json(['brand'=>$brand,'status'=>200]);
+        }else{
+            $brand->update([
+                'status' => 1,
+            ]);
+            return response()->json(['brand'=>$brand,'status'=>200]);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
