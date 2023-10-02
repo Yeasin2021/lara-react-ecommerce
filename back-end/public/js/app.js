@@ -11707,7 +11707,7 @@ var ProductForm = function ProductForm() {
             _context.next = 14;
             return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/product', formData);
           case 14:
-            navigate("/admin-brand");
+            navigate("/admin-product-form");
             _context.next = 20;
             break;
           case 17:

@@ -59,7 +59,7 @@ const onSubmitForm = async(e) =>{
         formData.append('product_image',image);
         formData.append('status',status);
         await axios.post('/product',formData);
-        navigate("/admin-brand");
+        navigate("/admin-product-form");
     }catch(error){
         console.log(error.message);
     }
