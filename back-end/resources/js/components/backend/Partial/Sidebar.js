@@ -45,6 +45,7 @@ const Sidebar = () => {
                                 <li><i className="fa fa-table"></i><Link to='/admin-feature'>Feature Table</Link></li>
                                 <li><i className="fa fa-table"></i><Link to='/admin-category'>Category Table</Link></li>
                                 <li><i className="fa fa-table"></i><Link to='/admin-brand'>Brand Table</Link></li>
+                                <li><i className="fa fa-table"></i><Link to='/admin-product'>Product Table</Link></li>
                                 {/* <li><i className="fa fa-table"></i><a href="tables-data.html">Data Table</a></li> */}
                             </ul>
                         </li>

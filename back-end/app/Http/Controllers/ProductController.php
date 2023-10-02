@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return response()->json(['products'=>$products, 'status'=>200]);
     }
 
     /**
@@ -46,7 +48,7 @@ class ProductController extends Controller
         // dd($images);
         if($images){
             $fileName = 'product'.'_'.time().'image'.'.'.$images->extension();
-            $images->move(public_path('frontend/img/product/store'),$fileName);
+            $images->move(public_path('frontend/img/product_store/'),$fileName);
         }
 
         $store = Product::create([
