@@ -43,10 +43,8 @@ useEffect(()=>{
                                                             <tr>
                                                             <th scope="row">{item.id}</th>
                                                             <td>{item.product_name}</td>
-                                                            {/* <td>{item.brand_id}</td> */}
                                                             <td>{item.brand}</td>
                                                             <td>{item.category}</td>
-                                                            {/* <td>{item.category_id}</td> */}
                                                             <td>{item.product_quantity}</td>
                                                             <td>{item.product_price}</td>
                                                             <td>{item.short_desc}</td>
@@ -55,7 +53,7 @@ useEffect(()=>{
                                                                 <img width="70px" height="70px" src={`frontend/img/product_store/${item.product_image}`} />
                                                             </td>
                                                             <td>
-                                                                <Link to={`/admin-banner-edit/${item.id}`}>
+                                                                <Link to={`/admin-product-edit/${item.id}`}>
                                                                     <button className='btn btn-primary'>Edit</button>
                                                                 </Link>
                                                             </td>

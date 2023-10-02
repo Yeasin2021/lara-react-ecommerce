@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         // $products = Product::all();
-        
+
         $products = DB::table('products')
         ->join('categories','products.category_id','=','categories.id')
         ->join('brands','products.brand_id','=','brands.id')
@@ -92,9 +92,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $edit = Product::find($id);
+        return response()->json(['edit'=>$edit,'status'=>200]);
     }
 
     /**

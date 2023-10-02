@@ -17,6 +17,7 @@ import BrandForm from './backend/pages/form/BrandForm';
 import BrandEdit from './backend/pages/form/BrandEdit';
 import ProductForm from './backend/pages/form/ProductForm';
 import Product from './backend/pages/table/Product';
+import ProductEdit from './backend/pages/form/ProductEdit';
 
 const Admin = () => {
 const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -50,6 +51,7 @@ useEffect(() => {
                     <Route path='/admin-brand-edit/:id' element={<Protected isLogedIn={isLoggedIn}><BrandEdit /></Protected>}></Route>
                     <Route path='/admin-product' element={<Protected isLogedIn={isLoggedIn}><Product /></Protected>}></Route>
                     <Route path='/admin-product-form' element={<Protected isLogedIn={isLoggedIn}><ProductForm /></Protected>}></Route>
+                    <Route path='/admin-product-edit/:id' element={<Protected isLogedIn={isLoggedIn}><ProductEdit /></Protected>}></Route>
 
                 </Route>
             </Routes>
