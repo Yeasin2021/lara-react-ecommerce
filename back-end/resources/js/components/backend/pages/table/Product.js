@@ -26,8 +26,8 @@ useEffect(()=>{
                                         <tr>
                                             <th scope="col">Id</th>
                                             <th scope="col">Product Name</th>
-                                            <th scope="col">Brand Id</th>
-                                            <th scope="col">Category Id</th>
+                                            <th scope="col">Brand Name</th>
+                                            <th scope="col">Category Name</th>
                                             <th scope="col">Quantity</th>
                                             <th scope="col">Price</th>
                                             <th scope="col">Description</th>
@@ -43,8 +43,10 @@ useEffect(()=>{
                                                             <tr>
                                                             <th scope="row">{item.id}</th>
                                                             <td>{item.product_name}</td>
-                                                            <td>{item.brand_id}</td>
-                                                            <td>{item.category_id}</td>
+                                                            {/* <td>{item.brand_id}</td> */}
+                                                            <td>{item.brand}</td>
+                                                            <td>{item.category}</td>
+                                                            {/* <td>{item.category_id}</td> */}
                                                             <td>{item.product_quantity}</td>
                                                             <td>{item.product_price}</td>
                                                             <td>{item.short_desc}</td>

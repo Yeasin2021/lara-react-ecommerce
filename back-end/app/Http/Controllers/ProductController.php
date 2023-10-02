@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use DB;
 
 class ProductController extends Controller
 {
@@ -15,7 +16,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        // $products = Product::all();
+        
+        $products = DB::table('products')
+        ->join('categories','products.category_id','=','categories.id')
+        ->join('brands','products.brand_id','=','brands.id')
+        ->select('products.*','categories.category','brands.brand')
+        ->get();
+
         return response()->json(['products'=>$products, 'status'=>200]);
     }
 
