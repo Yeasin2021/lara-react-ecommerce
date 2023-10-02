@@ -6,6 +6,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FeatureAreaController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,8 @@ Route::post('category-status/{id}', [CategoryController::class,'categoryStatus']
 Route::resource('brand', BrandController::class);
 Route::post('brand-update/{id}', [BrandController::class,'update']);
 Route::post('brand-status/{id}', [BrandController::class,'brandStatus']);
+
+Route::resource('product', ProductController::class);
 
 
 

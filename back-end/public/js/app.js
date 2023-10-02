@@ -11629,41 +11629,55 @@ var ProductForm = function ProductForm() {
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState6 = _slicedToArray(_useState5, 2),
-    brands = _useState6[0],
-    setBrands = _useState6[1];
+    categoryValue = _useState6[0],
+    setCategoryValue = _useState6[1];
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState8 = _slicedToArray(_useState7, 2),
-    categories = _useState8[0],
-    setCategories = _useState8[1];
+    brandValue = _useState8[0],
+    setBrandValue = _useState8[1];
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState10 = _slicedToArray(_useState9, 2),
-    productName = _useState10[0],
-    setProductName = _useState10[1];
+    brands = _useState10[0],
+    setBrands = _useState10[1];
   var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState12 = _slicedToArray(_useState11, 2),
-    productPrice = _useState12[0],
-    setProductPrice = _useState12[1];
+    categories = _useState12[0],
+    setCategories = _useState12[1];
   var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState14 = _slicedToArray(_useState13, 2),
-    productQuantity = _useState14[0],
-    setProductQuantity = _useState14[1];
+    productName = _useState14[0],
+    setProductName = _useState14[1];
   var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState16 = _slicedToArray(_useState15, 2),
-    shortDescription = _useState16[0],
-    setShortDescription = _useState16[1];
+    productPrice = _useState16[0],
+    setProductPrice = _useState16[1];
   var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState18 = _slicedToArray(_useState17, 2),
-    longDescription = _useState18[0],
-    setLongDescription = _useState18[1];
+    productQuantity = _useState18[0],
+    setProductQuantity = _useState18[1];
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState20 = _slicedToArray(_useState19, 2),
-    status = _useState20[0],
-    setStatus = _useState20[1];
+    shortDescription = _useState20[0],
+    setShortDescription = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState22 = _slicedToArray(_useState21, 2),
+    longDescription = _useState22[0],
+    setLongDescription = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState24 = _slicedToArray(_useState23, 2),
+    status = _useState24[0],
+    setStatus = _useState24[1];
   var imageHandaler = function imageHandaler(e) {
     console.log(e.target.files);
     setImage(e.target.files[0]);
     setFile(URL.createObjectURL(e.target.files[0]));
   };
+
+  // const handleSelect = (e) =>{
+  //     setCategoryValue(e.target.value)
+  //     alert(e.target.value)
+  // }
+
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var brandData = axios__WEBPACK_IMPORTED_MODULE_1___default().get('/brand').then(function (response) {
       return setBrands(response.data.brands);
@@ -11680,25 +11694,31 @@ var ProductForm = function ProductForm() {
           case 0:
             e.preventDefault();
             _context.prev = 1;
-            formData = new FormData(); // formData.append('brand',brand);
-            // formData.append('brand_description',description);
-            // formData.append('status',status);
+            formData = new FormData();
+            formData.append('category_id', categoryValue);
+            formData.append('brand_id', brandValue);
             formData.append('product_name', productName);
-            _context.next = 6;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/', formData);
-          case 6:
+            formData.append('product_price', productPrice);
+            formData.append('product_quantity', productQuantity);
+            formData.append('short_description', shortDescription);
+            formData.append('long_description', longDescription);
+            formData.append('product_image', image);
+            formData.append('status', status);
+            _context.next = 14;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/product', formData);
+          case 14:
             navigate("/admin-brand");
-            _context.next = 12;
+            _context.next = 20;
             break;
-          case 9:
-            _context.prev = 9;
+          case 17:
+            _context.prev = 17;
             _context.t0 = _context["catch"](1);
             console.log(_context.t0.message);
-          case 12:
+          case 20:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[1, 9]]);
+      }, _callee, null, [[1, 17]]);
     }));
     return function onSubmitForm(_x) {
       return _ref.apply(this, arguments);
@@ -11712,12 +11732,13 @@ var ProductForm = function ProductForm() {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "card-header",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
-            children: "Icon/Text"
-          }), " Groups"]
+            children: "Product"
+          }), " Page"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "card-body card-block",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
             className: "form-horizontal",
+            onSubmit: onSubmitForm,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
               className: "row form-group",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -11734,18 +11755,22 @@ var ProductForm = function ProductForm() {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
                     className: "col col-md-9",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
-                      name: "category",
+                      name: "category_id",
+                      onChange: function onChange(e) {
+                        return setCategoryValue(e.target.value);
+                      },
                       id: "multiple-select",
                       multiple: "",
                       className: "form-control",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
-                        value: "1",
                         children: "-----Select Category-----"
                       }), categories && categories.map(function (category) {
                         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                           value: category.id,
                           children: category.category
-                        });
+                        })
+                        // <option value={JSON.stringify(category.category)}>{category.category}</option>
+                        ;
                       })]
                     })
                   })]
@@ -11761,7 +11786,10 @@ var ProductForm = function ProductForm() {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
                     className: "col col-md-9",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
-                      name: "brand",
+                      name: "brand_id",
+                      onChange: function onChange(e) {
+                        return setBrandValue(e.target.value);
+                      },
                       id: "multiple-select",
                       multiple: "",
                       className: "form-control",
@@ -11772,7 +11800,9 @@ var ProductForm = function ProductForm() {
                         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                           value: brand.id,
                           children: brand.brand
-                        });
+                        })
+                        // <option value='{brand.id.toString()}' key={brand.id}>{brand.brand}</option>
+                        ;
                       })]
                     })
                   })]

@@ -9,6 +9,9 @@ const navigate = useNavigate();
 const [file, setFile] = useState(); //image preview
 const [image,setImage] = useState([]); //Image name
 
+const [categoryValue, setCategoryValue] = useState([]);
+const [brandValue, setBrandValue] = useState([]);
+
 const [brands,setBrands] = useState([]);
 const [categories,setCategories] = useState([]);
 const [productName,setProductName] = useState([]);
@@ -25,6 +28,13 @@ const imageHandaler = (e) =>{
     setFile(URL.createObjectURL(e.target.files[0]));
 }
 
+// const handleSelect = (e) =>{
+//     setCategoryValue(e.target.value)
+//     alert(e.target.value)
+// }
+
+
+
 
 useEffect(()=>{
     const brandData = axios.get('/brand').then((response)=>setBrands(response.data.brands));
@@ -39,12 +49,16 @@ const onSubmitForm = async(e) =>{
     try{
 
         const formData = new FormData();
-        // formData.append('brand',brand);
-
-        // formData.append('brand_description',description);
-        // formData.append('status',status);
+        formData.append('category_id',categoryValue);
+        formData.append('brand_id',brandValue);
         formData.append('product_name',productName);
-        await axios.post('/',formData);
+        formData.append('product_price',productPrice);
+        formData.append('product_quantity',productQuantity);
+        formData.append('short_description',shortDescription);
+        formData.append('long_description',longDescription);
+        formData.append('product_image',image);
+        formData.append('status',status);
+        await axios.post('/product',formData);
         navigate("/admin-brand");
     }catch(error){
         console.log(error.message);
@@ -57,36 +71,40 @@ const onSubmitForm = async(e) =>{
     <div>
     <div className="col-lg-12">
         <div className="card">
-            <div className="card-header"><strong>Icon/Text</strong> Groups</div>
+            <div className="card-header"><strong>Product</strong> Page</div>
             <div className="card-body card-block">
-                <form  className="form-horizontal">
+                <form  className="form-horizontal" onSubmit={onSubmitForm}>
                     <div className="row form-group">
                         <div className="col col-md-12">
                         <div className="row form-group">
                             <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Category select</label></div>
                                 <div className="col col-md-9">
-                                    <select name="category" id="multiple-select" multiple="" className="form-control">
-                                        <option value="1">-----Select Category-----</option>
+                                    <select name="category_id" onChange={(e)=>setCategoryValue(e.target.value)}   id="multiple-select" multiple="" className="form-control">
+                                        <option>-----Select Category-----</option>
                                         {
                                             categories && categories.map((category)=>{
                                                 return(
                                                     <option value={category.id}>{category.category}</option>
+                                                    // <option value={JSON.stringify(category.category)}>{category.category}</option>
+
                                                 )
                                             })
                                         }
 
                                     </select>
+                                    {/* <P>{value}</P> */}
                                 </div>
                         </div>
                         <div className="row form-group">
                             <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Brand select</label></div>
                                 <div className="col col-md-9">
-                                    <select name="brand" id="multiple-select" multiple="" className="form-control">
+                                    <select name="brand_id" onChange={(e)=>setBrandValue(e.target.value)} id="multiple-select" multiple="" className="form-control">
                                     <option value="1">-----Select Brand-----</option>
                                     {
                                             brands && brands.map((brand)=>{
                                                 return(
                                                     <option value={brand.id}>{brand.brand}</option>
+                                                    // <option value='{brand.id.toString()}' key={brand.id}>{brand.brand}</option>
                                                 )
                                             })
                                         }
