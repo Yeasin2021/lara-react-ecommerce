@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use DB;
@@ -48,10 +50,6 @@ class ProductController extends Controller
         // dd($request->all());
         // dd(json_decode($request->all(),true));
 
-
-
-
-
         $images = $request->file('product_image');
         // dd($images);
         if($images){
@@ -94,8 +92,26 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $edit = Product::find($id);
-        return response()->json(['edit'=>$edit,'status'=>200]);
+        $product = Product::find($id);
+        $categories = Category::where('status',1)->get();
+        $brands = Brand::where('status',1)->get();
+
+        $products = DB::table('products')
+        ->join('categories','products.category_id','=','categories.id')
+        ->join('brands','products.brand_id','=','brands.id')
+        ->select('products.*','categories.category','brands.brand')
+        ->where('products.id','=', $product);
+
+        // dd($products);
+        // dd($product,$categories, $brands);
+
+        return response()->json(
+            [
+                'product'=>$product,
+                'categories'=>$categories,
+                'brands'=>$brands,
+                'status'=>200
+            ]);
     }
 
     /**

@@ -10,17 +10,36 @@ const navigate = useNavigate();
 const [file, setFile] = useState(); //image preview
 const [image,setImage] = useState([]); //Image name
 
-const [categoryValue, setCategoryValue] = useState([]);
-const [brandValue, setBrandValue] = useState([]);
 
+// set for loop
 const [brands,setBrands] = useState([]);
 const [categories,setCategories] = useState([]);
-const [productName,setProductName] = useState([]);
-const [productPrice,setProductPrice] = useState([]);
-const [productQuantity,setProductQuantity] = useState([]);
-const [shortDescription,setShortDescription] = useState([]);
-const [longDescription,setLongDescription] = useState([]);
-const [status,setStatus] = useState([]);
+
+// set for take input value
+// const [categoryValue, setCategoryValue] = useState([]);
+// const [brandValue, setBrandValue] = useState([]);
+// const [productName,setProductName] = useState([]);
+// const [productPrice,setProductPrice] = useState([]);
+// const [productQuantity,setProductQuantity] = useState([]);
+// const [shortDescription,setShortDescription] = useState([]);
+// const [longDescription,setLongDescription] = useState([]);
+// const [status,setStatus] = useState([]);
+
+
+const [input,setInput] = useState(
+    {
+        categoryValue: '',
+        brandValue: '',
+        product_name: '',
+        product_price: '',
+        product_quantity: '',
+        short_desc: '',
+        long_desc: '',
+        status: '',
+        product_image: '',
+
+    }
+);
 
 
 const imageHandaler = (e) =>{
@@ -29,43 +48,50 @@ const imageHandaler = (e) =>{
     setFile(URL.createObjectURL(e.target.files[0]));
 }
 
-// const handleSelect = (e) =>{
-//     setCategoryValue(e.target.value)
-//     alert(e.target.value)
-// }
-
-
-
 
 useEffect(()=>{
-    const brandData = axios.get('/brand').then((response)=>setBrands(response.data.brands));
-    const categoryData = axios.get('/category').then((response)=>setCategories(response.data.categories));
-},[])
+    try{
+        const getSingleRecord = async () =>{
+        const response = await axios.get(`/product/${id}/edit`);
+        setCategories(response.data.categories);
+        setInput(response.data.product);
+        setBrands(response.data.brands);
+        // console.log(response.data.product,response.data.categories,response.data.brands)
+      };
+
+      getSingleRecord();
+
+    }catch(error){
+      console.log(error);
+    }
+},[id]);
 
 
 
 
 const onSubmitForm = async(e) =>{
     e.preventDefault();
-    try{
+    // try{
 
-        const formData = new FormData();
-        formData.append('category_id',categoryValue);
-        formData.append('brand_id',brandValue);
-        formData.append('product_name',productName);
-        formData.append('product_price',productPrice);
-        formData.append('product_quantity',productQuantity);
-        formData.append('short_description',shortDescription);
-        formData.append('long_description',longDescription);
-        formData.append('product_image',image);
-        formData.append('status',status);
-        await axios.post(`/product-update/${id}`,formData);
-        navigate("/admin-product");
-    }catch(error){
-        console.log(error.message);
-    }
+    //     const formData = new FormData();
+    //     formData.append('category_id',categoryValue);
+    //     formData.append('brand_id',brandValue);
+    //     formData.append('product_name',productName);
+    //     formData.append('product_price',productPrice);
+    //     formData.append('product_quantity',productQuantity);
+    //     formData.append('short_description',shortDescription);
+    //     formData.append('long_description',longDescription);
+    //     formData.append('product_image',image);
+    //     formData.append('status',status);
+    //     await axios.post(`/product-update/${id}`,formData);
+    //     navigate("/admin-product");
+    // }catch(error){
+    //     console.log(error.message);
+    // }
 
 }
+
+
 
 
   return (
@@ -85,7 +111,7 @@ const onSubmitForm = async(e) =>{
                                         {
                                             categories && categories.map((category)=>{
                                                 return(
-                                                    <option value={category.id}>{category.category}</option>
+                                                    <option value={category.id} >{category.category}</option>
                                                     // <option value={JSON.stringify(category.category)}>{category.category}</option>
 
                                                 )
@@ -119,7 +145,7 @@ const onSubmitForm = async(e) =>{
                                 <div className="col col-md-9">
                                     <div className="input-group">
                                     <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
-                                    <input type="text" id="input1-group1" name="product_name"  onChange={(e)=>setProductName(e.target.value)} placeholder="Product Name" className="form-control" />
+                                    <input type="text" id="input1-group1" name="product_name"  onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})} value={input.product_name} className="form-control" />
                                     </div>
                                 </div>
                         </div>
@@ -128,7 +154,7 @@ const onSubmitForm = async(e) =>{
                                 <div className="col col-md-9">
                                     <div className="input-group">
                                     <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
-                                    <input type="text" id="input1-group1" name="product_price"  onChange={(e)=>setProductPrice(e.target.value)} placeholder="Product Price" className="form-control" />
+                                    <input type="text" id="input1-group1" name="product_price"  onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})} value={input.product_price} className="form-control" />
                                     </div>
                                 </div>
                         </div>
@@ -137,7 +163,7 @@ const onSubmitForm = async(e) =>{
                                 <div className="col col-md-9">
                                     <div className="input-group">
                                     <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
-                                    <input type="text" id="input1-group1" name="product_quantity"  onChange={(e)=>setProductQuantity(e.target.value)} placeholder="Product Quantity" className="form-control" />
+                                    <input type="text" id="input1-group1" name="product_quantity"  onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})} value={input.product_quantity} className="form-control" />
                                     </div>
                                 </div>
                         </div>
@@ -146,7 +172,9 @@ const onSubmitForm = async(e) =>{
                                 <div className="col col-md-9">
                                     <div className="input-group">
                                     <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
-                                    <input type="text" id="input1-group1" name="short_description"  onChange={(e)=>setShortDescription(e.target.value)} placeholder="Short Description" className="form-control" />
+                                    <input type="text" id="input1-group1" name="short_desc"   onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})} value={input.short_desc} className="form-control" />
+                                    {/* <textarea  value={input.short_description}></textarea> */}
+                                    {/* <p>{input.short_description}</p> */}
                                     </div>
                                 </div>
                         </div>
@@ -155,7 +183,7 @@ const onSubmitForm = async(e) =>{
                                 <div className="col col-md-9">
                                     <div className="input-group">
                                     <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
-                                    <input type="text" id="input1-group1" name="long_description"  onChange={(e)=>setLongDescription(e.target.value)} placeholder="Long Description" className="form-control" />
+                                    <input type="text" id="input1-group1" name="long_desc"  onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})} value={input.long_desc} className="form-control" />
                                     </div>
                                 </div>
                         </div>
@@ -166,7 +194,8 @@ const onSubmitForm = async(e) =>{
                                     <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
                                     <input type="file" id="input1-group1" name="product_image"  onChange={imageHandaler}  className="form-control" />
                                      {/* <div style={{ maxWidth: '30%'}}><img src={file}  /></div> */}
-                                     <img src={file}  />
+                                     <img width="100px" height="100px" src={`/frontend/img/product_store/${input.product_image}`} />
+                                     {/* <img src={file}  /> */}
 
                                     </div>
                                 </div>
@@ -176,8 +205,8 @@ const onSubmitForm = async(e) =>{
                             <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Product Status</label></div>
                                 <div className="col col-md-9">
                                     <div class="form-check-inline form-check">
-                                    <label htmlFor="inline-radio1" className="form-check-label"> <input type="radio" name="status" value="1" className="form-check-input"  onChange={(e)=>setStatus(e.target.value)} />Published </label>
-                                    <label htmlFor="inline-radio2" className="form-check-label ml-2"> <input type="radio" name="status" value="0" className="form-check-input"  onChange={(e)=>setStatus(e.target.value)} />Unpublished </label>
+                                    <label htmlFor="inline-radio1" className="form-check-label"> <input type="radio" name="status" checked={input.status == 1} value="1" className="form-check-input"  onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})}  />Published </label>
+                                    <label htmlFor="inline-radio2" className="form-check-label ml-2"> <input type="radio" name="status" checked={input.status == 0}  value="0" className="form-check-input"  onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})}  />Unpublished </label>
                                     </div>
                                 </div>
                         </div>
