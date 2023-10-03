@@ -12016,11 +12016,8 @@ var ProductEdit = function ProductEdit() {
                         onChange: imageHandaler,
                         className: "form-control"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-                        width: "100px",
-                        height: "100px",
-                        src: "/frontend/img/product_store/".concat(input.product_image)
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-                        src: file
+                        src: file ? file : "/frontend/img/product_store/".concat(input.product_image),
+                        alt: "Product Image"
                       })]
                     })
                   })]

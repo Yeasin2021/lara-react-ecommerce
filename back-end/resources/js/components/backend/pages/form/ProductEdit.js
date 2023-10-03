@@ -191,10 +191,7 @@ const onSubmitForm = async(e) =>{
                                     <div className="input-group">
                                     <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
                                     <input type="file" id="input1-group1" name="product_image"  onChange={imageHandaler}  className="form-control" />
-                                     {/* <div style={{ maxWidth: '30%'}}><img src={file}  /></div> */}
-                                     <img width="100px" height="100px" src={`/frontend/img/product_store/${input.product_image}`} />
-                                     <img src={file}  />
-
+                                        <img src={file ? file : `/frontend/img/product_store/${input.product_image}`} alt="Product Image" />
                                     </div>
                                 </div>
                         </div>
