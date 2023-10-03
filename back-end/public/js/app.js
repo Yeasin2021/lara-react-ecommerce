@@ -12000,9 +12000,9 @@ var ProductEdit = function ProductEdit() {
                       className: " form-control-label",
                       children: "Product  Image"
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                     className: "col col-md-9",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                       className: "input-group",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
                         className: "input-group-addon",
@@ -12015,11 +12015,11 @@ var ProductEdit = function ProductEdit() {
                         name: "product_image",
                         onChange: imageHandaler,
                         className: "form-control"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-                        src: file ? file : "/frontend/img/product_store/".concat(input.product_image),
-                        alt: "Product Image"
                       })]
-                    })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+                      src: file ? file : "/frontend/img/product_store/".concat(input.product_image),
+                      alt: "Product Image"
+                    })]
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                   className: "row form-group",
