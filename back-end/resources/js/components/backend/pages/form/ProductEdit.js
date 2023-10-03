@@ -100,7 +100,7 @@ const onSubmitForm = async(e) =>{
         <div className="card">
             <div className="card-header"><strong>Product</strong> Page</div>
             <div className="card-body card-block">
-                <form  className="form-horizontal" onSubmit={onSubmitForm}>
+                <form  className="form-horizontal" onSubmit={onSubmitForm} name="editForm">
                     <div className="row form-group">
                         <div className="col col-md-12">
                         <div className="row form-group">
@@ -111,15 +111,14 @@ const onSubmitForm = async(e) =>{
                                         {
                                             categories && categories.map((category)=>{
                                                 return(
-                                                    <option value={category.id} >{category.category}</option>
-                                                    // <option value={JSON.stringify(category.category)}>{category.category}</option>
+                                                    <option value={category.id} selected>{category.category}</option>
 
                                                 )
                                             })
                                         }
 
                                     </select>
-                                    {/* <P>{value}</P> */}
+
                                 </div>
                         </div>
                         <div className="row form-group">
@@ -130,8 +129,8 @@ const onSubmitForm = async(e) =>{
                                     {
                                             brands && brands.map((brand)=>{
                                                 return(
-                                                    <option value={brand.id}>{brand.brand}</option>
-                                                    // <option value='{brand.id.toString()}' key={brand.id}>{brand.brand}</option>
+                                                    <option value={brand.id} selected>{brand.brand}</option>
+
                                                 )
                                             })
                                         }
@@ -173,8 +172,7 @@ const onSubmitForm = async(e) =>{
                                     <div className="input-group">
                                     <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
                                     <input type="text" id="input1-group1" name="short_desc"   onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})} value={input.short_desc} className="form-control" />
-                                    {/* <textarea  value={input.short_description}></textarea> */}
-                                    {/* <p>{input.short_description}</p> */}
+
                                     </div>
                                 </div>
                         </div>
@@ -195,7 +193,7 @@ const onSubmitForm = async(e) =>{
                                     <input type="file" id="input1-group1" name="product_image"  onChange={imageHandaler}  className="form-control" />
                                      {/* <div style={{ maxWidth: '30%'}}><img src={file}  /></div> */}
                                      <img width="100px" height="100px" src={`/frontend/img/product_store/${input.product_image}`} />
-                                     {/* <img src={file}  /> */}
+                                     <img src={file}  />
 
                                     </div>
                                 </div>

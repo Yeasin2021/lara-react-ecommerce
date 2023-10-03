@@ -11775,6 +11775,7 @@ var ProductEdit = function ProductEdit() {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
             className: "form-horizontal",
             onSubmit: onSubmitForm,
+            name: "editForm",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
               className: "row form-group",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -11803,10 +11804,9 @@ var ProductEdit = function ProductEdit() {
                       }), categories && categories.map(function (category) {
                         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                           value: category.id,
+                          selected: true,
                           children: category.category
-                        })
-                        // <option value={JSON.stringify(category.category)}>{category.category}</option>
-                        ;
+                        });
                       })]
                     })
                   })]
@@ -11835,10 +11835,9 @@ var ProductEdit = function ProductEdit() {
                       }), brands && brands.map(function (brand) {
                         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                           value: brand.id,
+                          selected: true,
                           children: brand.brand
-                        })
-                        // <option value='{brand.id.toString()}' key={brand.id}>{brand.brand}</option>
-                        ;
+                        });
                       })]
                     })
                   })]
@@ -12020,6 +12019,8 @@ var ProductEdit = function ProductEdit() {
                         width: "100px",
                         height: "100px",
                         src: "/frontend/img/product_store/".concat(input.product_image)
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+                        src: file
                       })]
                     })
                   })]
