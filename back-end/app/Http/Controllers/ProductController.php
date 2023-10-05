@@ -127,8 +127,12 @@ class ProductController extends Controller
 
         $product = Product::find($id);
         $images = $request->file('product_image');
+        $oldImage = 'frontend/img/product_store/'.$product->product_image;
         // dd($images);
         if($images){
+            if(File::exists($oldImage)){
+                File::delete($oldImage);
+            }
             $fileName = 'product'.'_'.time().'image'.'.'.$images->extension();
             $images->move(public_path('frontend/img/product_store/'),$fileName);
         }
