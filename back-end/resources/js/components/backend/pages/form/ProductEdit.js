@@ -28,8 +28,8 @@ const [categories,setCategories] = useState([]);
 
 const [input,setInput] = useState(
     {
-        categoryValue: '',
-        brandValue: '',
+        category_id: '',
+        brand_id: '',
         product_name: '',
         product_price: '',
         product_quantity: '',
@@ -71,23 +71,23 @@ useEffect(()=>{
 
 const onSubmitForm = async(e) =>{
     e.preventDefault();
-    // try{
+    try{
 
-    //     const formData = new FormData();
-    //     formData.append('category_id',categoryValue);
-    //     formData.append('brand_id',brandValue);
-    //     formData.append('product_name',productName);
-    //     formData.append('product_price',productPrice);
-    //     formData.append('product_quantity',productQuantity);
-    //     formData.append('short_description',shortDescription);
-    //     formData.append('long_description',longDescription);
-    //     formData.append('product_image',image);
-    //     formData.append('status',status);
-    //     await axios.post(`/product-update/${id}`,formData);
-    //     navigate("/admin-product");
-    // }catch(error){
-    //     console.log(error.message);
-    // }
+        // const formData = new FormData();
+        // formData.append('category_id',categoryValue);
+        // formData.append('brand_id',brandValue);
+        // formData.append('product_name',productName);
+        // formData.append('product_price',productPrice);
+        // formData.append('product_quantity',productQuantity);
+        // formData.append('short_description',shortDescription);
+        // formData.append('long_description',longDescription);
+        // formData.append('product_image',image);
+        // formData.append('status',status);
+        await axios.post(`/product-update/${id}`,input);
+        navigate("/admin-product");
+    }catch(error){
+        console.log(error.message);
+    }
 
 }
 
@@ -98,7 +98,7 @@ const onSubmitForm = async(e) =>{
     <div>
     <div className="col-lg-12">
         <div className="card">
-            <div className="card-header"><strong>Product</strong> Page</div>
+            <div className="card-header"><strong>Product</strong>Edit Page</div>
             <div className="card-body card-block">
                 <form  className="form-horizontal" onSubmit={onSubmitForm} name="editForm">
                     <div className="row form-group">
@@ -106,7 +106,7 @@ const onSubmitForm = async(e) =>{
                         <div className="row form-group">
                             <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Category select</label></div>
                                 <div className="col col-md-9">
-                                    <select name="category_id" onChange={(e)=>setCategoryValue(e.target.value)}   id="multiple-select" multiple="" className="form-control">
+                                    <select name="category_id" onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})}   id="multiple-select" multiple="" className="form-control">
                                         <option>-----Select Category-----</option>
                                         {
                                             categories && categories.map((category)=>{
@@ -124,7 +124,7 @@ const onSubmitForm = async(e) =>{
                         <div className="row form-group">
                             <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Brand select</label></div>
                                 <div className="col col-md-9">
-                                    <select name="brand_id" onChange={(e)=>setBrandValue(e.target.value)} id="multiple-select" multiple="" className="form-control">
+                                    <select name="brand_id" onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})} id="multiple-select" multiple="" className="form-control">
                                     <option value="1">-----Select Brand-----</option>
                                     {
                                             brands && brands.map((brand)=>{

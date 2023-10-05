@@ -11678,8 +11678,8 @@ var ProductEdit = function ProductEdit() {
   // const [status,setStatus] = useState([]);
 
   var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-      categoryValue: '',
-      brandValue: '',
+      category_id: '',
+      brand_id: '',
       product_name: '',
       product_price: '',
       product_quantity: '',
@@ -11733,28 +11733,22 @@ var ProductEdit = function ProductEdit() {
         while (1) switch (_context2.prev = _context2.next) {
           case 0:
             e.preventDefault();
-            // try{
-
-            //     const formData = new FormData();
-            //     formData.append('category_id',categoryValue);
-            //     formData.append('brand_id',brandValue);
-            //     formData.append('product_name',productName);
-            //     formData.append('product_price',productPrice);
-            //     formData.append('product_quantity',productQuantity);
-            //     formData.append('short_description',shortDescription);
-            //     formData.append('long_description',longDescription);
-            //     formData.append('product_image',image);
-            //     formData.append('status',status);
-            //     await axios.post(`/product-update/${id}`,formData);
-            //     navigate("/admin-product");
-            // }catch(error){
-            //     console.log(error.message);
-            // }
-          case 1:
+            _context2.prev = 1;
+            _context2.next = 4;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/product-update/".concat(id), input);
+          case 4:
+            navigate("/admin-product");
+            _context2.next = 10;
+            break;
+          case 7:
+            _context2.prev = 7;
+            _context2.t0 = _context2["catch"](1);
+            console.log(_context2.t0.message);
+          case 10:
           case "end":
             return _context2.stop();
         }
-      }, _callee2);
+      }, _callee2, null, [[1, 7]]);
     }));
     return function onSubmitForm(_x) {
       return _ref2.apply(this, arguments);
@@ -11769,7 +11763,7 @@ var ProductEdit = function ProductEdit() {
           className: "card-header",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
             children: "Product"
-          }), " Page"]
+          }), "Edit Page"]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           className: "card-body card-block",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
@@ -11794,7 +11788,7 @@ var ProductEdit = function ProductEdit() {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
                       name: "category_id",
                       onChange: function onChange(e) {
-                        return setCategoryValue(e.target.value);
+                        return setInput(_objectSpread(_objectSpread({}, input), {}, _defineProperty({}, e.target.name, e.target.value)));
                       },
                       id: "multiple-select",
                       multiple: "",
@@ -11824,7 +11818,7 @@ var ProductEdit = function ProductEdit() {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
                       name: "brand_id",
                       onChange: function onChange(e) {
-                        return setBrandValue(e.target.value);
+                        return setInput(_objectSpread(_objectSpread({}, input), {}, _defineProperty({}, e.target.name, e.target.value)));
                       },
                       id: "multiple-select",
                       multiple: "",
