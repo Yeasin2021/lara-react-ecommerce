@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const Product = () => {
 const [items,setItems] = useState([]);
+const [status, setStatus] = useState([]);
 useEffect(()=>{
     const data = async () =>{
         const response = await axios.get('/product').then((res)=>setItems(res.data.products));
@@ -24,6 +25,26 @@ const deleteCategory = async (id) =>{
     }
 
   }
+
+  const changeStatus = async (id) =>{
+
+    if(window.confirm("Update this Item ?") == true){
+        // Status update code
+        await axios.post(`/product-status/${id}`);
+        // live status show (code)
+        const data = async () =>{
+        const response = await axios.get('/product').then((res)=>setItems(res.data.products));
+        }
+        data();
+    }else{
+        console.log('Somthimg is problem')
+    }
+
+  }
+
+
+
+
 
   return (
     <div>
@@ -68,10 +89,15 @@ const deleteCategory = async (id) =>{
                                                                 <img width="70px" height="70px" src={`frontend/img/product/store/${item.product_image}`} />
                                                             </td>
                                                             <td>
+                                                            <div style={{ display: 'flex', alignItems: 'center' }}>
                                                                 <Link to={`/admin-product-edit/${item.id}`}>
-                                                                    <button className='btn btn-primary'>E</button>
+                                                                        <button className='btn btn-primary'>E</button>
                                                                 </Link>
-                                                                    <button onClick={()=> deleteCategory(item.id)}  className='btn btn-danger ml-3'>D</button>
+                                                                <button onClick={()=> deleteCategory(item.id)}  className='btn btn-danger ml-3'>D</button>
+                                                                <button onClick={()=> changeStatus(item.id)} className="ml-3"><i className={item.status === 1 ? "fa fa-arrow-up" : "fa fa-arrow-down"}></i></button>
+                                                            </div>
+
+
                                                             </td>
 
                                                         </tr>

@@ -46,6 +46,7 @@ Route::post('brand-status/{id}', [BrandController::class,'brandStatus']);
 
 Route::resource('product', ProductController::class);
 Route::post('product-update/{id}', [ProductController::class,'update']);
+Route::post('product-status/{id}', [ProductController::class,'productStatus']);
 
 
 

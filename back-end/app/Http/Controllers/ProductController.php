@@ -166,6 +166,25 @@ class ProductController extends Controller
         return response()->json(['update'=>$update,'status'=>200]);
     }
 
+
+
+    public function productStatus($id)
+    {
+        $product = Product::find($id);
+
+        if($product->status == 1){
+            $product->update([
+                'status' => 0,
+            ]);
+            return response()->json(['product'=>$product,'status'=>200]);
+        }else{
+            $product->update([
+                'status' => 1,
+            ]);
+            return response()->json(['product'=>$product,'status'=>200]);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *

@@ -13902,6 +13902,10 @@ var Product = function Product() {
     _useState2 = _slicedToArray(_useState, 2),
     items = _useState2[0],
     setItems = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState4 = _slicedToArray(_useState3, 2),
+    status = _useState4[0],
+    setStatus = _useState4[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var data = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -13956,6 +13960,57 @@ var Product = function Product() {
     }));
     return function deleteCategory(_x) {
       return _ref2.apply(this, arguments);
+    };
+  }();
+  var changeStatus = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(id) {
+      var data;
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
+          case 0:
+            if (!(window.confirm("Update this Item ?") == true)) {
+              _context4.next = 7;
+              break;
+            }
+            _context4.next = 3;
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().post("/product-status/".concat(id));
+          case 3:
+            // live status show (code)
+            data = /*#__PURE__*/function () {
+              var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+                var response;
+                return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+                  while (1) switch (_context3.prev = _context3.next) {
+                    case 0:
+                      _context3.next = 2;
+                      return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/product').then(function (res) {
+                        return setItems(res.data.products);
+                      });
+                    case 2:
+                      response = _context3.sent;
+                    case 3:
+                    case "end":
+                      return _context3.stop();
+                  }
+                }, _callee3);
+              }));
+              return function data() {
+                return _ref4.apply(this, arguments);
+              };
+            }();
+            data();
+            _context4.next = 8;
+            break;
+          case 7:
+            console.log('Somthimg is problem');
+          case 8:
+          case "end":
+            return _context4.stop();
+        }
+      }, _callee4);
+    }));
+    return function changeStatus(_x2) {
+      return _ref3.apply(this, arguments);
     };
   }();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -14039,20 +14094,34 @@ var Product = function Product() {
                             height: "70px",
                             src: "frontend/img/product/store/".concat(item.product_image)
                           })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("td", {
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
-                            to: "/admin-product-edit/".concat(item.id),
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-                              className: "btn btn-primary",
-                              children: "E"
-                            })
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
-                            onClick: function onClick() {
-                              return deleteCategory(item.id);
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                            style: {
+                              display: 'flex',
+                              alignItems: 'center'
                             },
-                            className: "btn btn-danger ml-3",
-                            children: "D"
-                          })]
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {
+                              to: "/admin-product-edit/".concat(item.id),
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+                                className: "btn btn-primary",
+                                children: "E"
+                              })
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+                              onClick: function onClick() {
+                                return deleteCategory(item.id);
+                              },
+                              className: "btn btn-danger ml-3",
+                              children: "D"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+                              onClick: function onClick() {
+                                return changeStatus(item.id);
+                              },
+                              className: "ml-3",
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("i", {
+                                className: item.status === 1 ? "fa fa-arrow-up" : "fa fa-arrow-down"
+                              })
+                            })]
+                          })
                         })]
                       });
                     })
