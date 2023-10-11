@@ -2,56 +2,29 @@ import { useEffect, useState,React } from "react"
 import axios from "axios"
 import { useParams,useNavigate, Link } from 'react-router-dom';
 
-const ProductEdit = () => {
-const {id} = useParams();
-const navigate = useNavigate();
+const ProductEdits = () => {
+    const {id} = useParams();
+    const navigate = useNavigate();
 
 // set State for Image Preview and get Image name
 const [file, setFile] = useState(); //image preview
 const [image,setImage] = useState([]); //Image name
 
+const [inputs,setInputs] = useState([]);
 
-// set for loop
+const [categoryValue, setCategoryValue] = useState([]);
+const [brandValue, setBrandValue] = useState([]);
+
 const [brands,setBrands] = useState([]);
 const [categories,setCategories] = useState([]);
 
 
-
-
-const [input,setInput] = useState(
-    {
-        category_id: '',
-        brand_id: '',
-        product_name: '',
-        product_price: '',
-        product_quantity: '',
-        short_desc: '',
-        long_desc: '',
-        status: '',
-        product_image: image,
-    }
-);
-
-
-
-
-
-// const imageHandaler = (e) => {
-//     console.log(e.target.files)
-//     const selectedFile = e.target.files[0];
-
-//     setInput({
-//       ...input,
-//       product_image: e.target.files[0], // Update the product_image field with the selected file
-
-//     });
-
-
-
-//     // setImage(selectedFile);
-
-//     setFile(URL.createObjectURL(selectedFile));
-//   }
+const [productName,setProductName] = useState([]);
+const [productPrice,setProductPrice] = useState([]);
+const [productQuantity,setProductQuantity] = useState([]);
+const [shortDescription,setShortDescription] = useState([]);
+const [longDescription,setLongDescription] = useState([]);
+const [status,setStatus] = useState([]);
 
 
 const imageHandaler = (e) =>{
@@ -60,22 +33,19 @@ const imageHandaler = (e) =>{
     setFile(URL.createObjectURL(e.target.files[0]));
 }
 
+// const handleSelect = (e) =>{
+//     setCategoryValue(e.target.value)
+//     alert(e.target.value)
+// }
+
+
+
+
 useEffect(()=>{
-    try{
-        const getSingleRecord = async () =>{
-        const response = await axios.get(`/product/${id}/edit`);
-        setCategories(response.data.categories);
-        setInput(response.data.product);
-        setBrands(response.data.brands);
-        // console.log(response.data.product,response.data.categories,response.data.brands)
-      };
+    const brandData = axios.get('/brand').then((response)=>setBrands(response.data.brands));
+    const categoryData = axios.get('/category').then((response)=>setCategories(response.data.categories));
 
-      getSingleRecord();
-
-    }catch(error){
-      console.log(error);
-    }
-},[id]);
+},[])
 
 
 
@@ -84,7 +54,18 @@ const onSubmitForm = async(e) =>{
     e.preventDefault();
     try{
 
-        await axios.post(`/product-update/${id}`,input);
+        const formData = new FormData();
+        formData.append('category_id',categoryValue);
+        formData.append('brand_id',brandValue);
+        formData.append('product_name',productName);
+        formData.append('product_price',productPrice);
+        formData.append('product_quantity',productQuantity);
+        formData.append('short_desc',shortDescription);
+        formData.append('long_desc',longDescription);
+        formData.append('product_image',image);
+        formData.append('status',status);
+        // await axios.post('/product',formData);
+        await axios.post(`/product-update/${id}`,formData);
         navigate("/admin-product");
     }catch(error){
         console.log(error.message);
@@ -93,45 +74,44 @@ const onSubmitForm = async(e) =>{
 }
 
 
-
-
   return (
     <div>
     <div className="col-lg-12">
         <div className="card">
-            <div className="card-header"><strong>Product</strong>Edit Page</div>
+            <div className="card-header"><strong>Product</strong> Page</div>
             <div className="card-body card-block">
-                <form  className="form-horizontal" onSubmit={onSubmitForm} name="editForm" encType="multipart/form-data">
+                <form  className="form-horizontal" onSubmit={onSubmitForm}>
                     <div className="row form-group">
                         <div className="col col-md-12">
                         <div className="row form-group">
                             <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Category select</label></div>
                                 <div className="col col-md-9">
-                                    <select name="category_id" onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})}   id="multiple-select" multiple="" className="form-control">
+                                    <select name="category_id" onChange={(e)=>setCategoryValue(e.target.value)}   id="multiple-select" multiple="" className="form-control">
                                         <option>-----Select Category-----</option>
                                         {
                                             categories && categories.map((category)=>{
                                                 return(
-                                                    <option value={category.id} selected>{category.category}</option>
+                                                    <option value={category.id}>{category.category}</option>
+                                                    // <option value={JSON.stringify(category.category)}>{category.category}</option>
 
                                                 )
                                             })
                                         }
 
                                     </select>
-
+                                    {/* <P>{value}</P> */}
                                 </div>
                         </div>
                         <div className="row form-group">
                             <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Brand select</label></div>
                                 <div className="col col-md-9">
-                                    <select name="brand_id" onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})} id="multiple-select" multiple="" className="form-control">
+                                    <select name="brand_id" onChange={(e)=>setBrandValue(e.target.value)} id="multiple-select" multiple="" className="form-control">
                                     <option value="1">-----Select Brand-----</option>
                                     {
                                             brands && brands.map((brand)=>{
                                                 return(
-                                                    <option value={brand.id} selected>{brand.brand}</option>
-
+                                                    <option value={brand.id}>{brand.brand}</option>
+                                                    // <option value='{brand.id.toString()}' key={brand.id}>{brand.brand}</option>
                                                 )
                                             })
                                         }
@@ -145,7 +125,7 @@ const onSubmitForm = async(e) =>{
                                 <div className="col col-md-9">
                                     <div className="input-group">
                                     <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
-                                    <input type="text" id="input1-group1" name="product_name"  onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})} value={input.product_name} className="form-control" />
+                                    <input type="text" id="input1-group1" name="product_name"  onChange={(e)=>setProductName(e.target.value)} placeholder="Product Name"  className="form-control" />
                                     </div>
                                 </div>
                         </div>
@@ -154,7 +134,7 @@ const onSubmitForm = async(e) =>{
                                 <div className="col col-md-9">
                                     <div className="input-group">
                                     <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
-                                    <input type="text" id="input1-group1" name="product_price"  onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})} value={input.product_price} className="form-control" />
+                                    <input type="text" id="input1-group1" name="product_price"  onChange={(e)=>setProductPrice(e.target.value)} placeholder="Product Price" className="form-control" />
                                     </div>
                                 </div>
                         </div>
@@ -163,7 +143,7 @@ const onSubmitForm = async(e) =>{
                                 <div className="col col-md-9">
                                     <div className="input-group">
                                     <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
-                                    <input type="text" id="input1-group1" name="product_quantity"  onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})} value={input.product_quantity} className="form-control" />
+                                    <input type="text" id="input1-group1" name="product_quantity"  onChange={(e)=>setProductQuantity(e.target.value)} placeholder="Product Quantity" className="form-control" />
                                     </div>
                                 </div>
                         </div>
@@ -172,8 +152,7 @@ const onSubmitForm = async(e) =>{
                                 <div className="col col-md-9">
                                     <div className="input-group">
                                     <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
-                                    <input type="text" id="input1-group1" name="short_desc"   onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})} value={input.short_desc} className="form-control" />
-
+                                    <input type="text" id="input1-group1" name="short_desc"  onChange={(e)=>setShortDescription(e.target.value)} placeholder="Short Description" className="form-control" />
                                     </div>
                                 </div>
                         </div>
@@ -182,7 +161,7 @@ const onSubmitForm = async(e) =>{
                                 <div className="col col-md-9">
                                     <div className="input-group">
                                     <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
-                                    <input type="text" id="input1-group1" name="long_desc"  onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})} value={input.long_desc} className="form-control" />
+                                    <input type="text" id="input1-group1" name="long_desc"  onChange={(e)=>setLongDescription(e.target.value)} placeholder="Long Description" className="form-control" />
                                     </div>
                                 </div>
                         </div>
@@ -192,22 +171,19 @@ const onSubmitForm = async(e) =>{
                                     <div className="input-group">
                                     <div className="input-group-addon"><i className="fa fa-file-text-o"></i></div>
                                     <input type="file" id="input1-group1" name="product_image"  onChange={imageHandaler}  className="form-control" />
+                                     {/* <div style={{ maxWidth: '30%'}}><img src={file}  /></div> */}
+                                     <img src={file}  />
 
                                     </div>
-                                    {/* <img src={file ? file : `/frontend/img/product/store/${input.product_image}`} alt="product image" /> */}
-                                    {console.log(imageHandaler)}
-
-
                                 </div>
-
                         </div>
 
                         <div className="row form-group">
                             <div className="col col-md-3"><label for="multiple-select" className=" form-control-label">Product Status</label></div>
                                 <div className="col col-md-9">
                                     <div class="form-check-inline form-check">
-                                    <label htmlFor="inline-radio1" className="form-check-label"> <input type="radio" name="status" checked={input.status == 1} value="1" className="form-check-input"  onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})}  />Published </label>
-                                    <label htmlFor="inline-radio2" className="form-check-label ml-2"> <input type="radio" name="status" checked={input.status == 0}  value="0" className="form-check-input"  onChange={(e)=>setInput({...input,[e.target.name] : e.target.value})}  />Unpublished </label>
+                                    <label htmlFor="inline-radio1" className="form-check-label"> <input type="radio" name="status" value="1" className="form-check-input"  onChange={(e)=>setStatus(e.target.value)} />Published </label>
+                                    <label htmlFor="inline-radio2" className="form-check-label ml-2"> <input type="radio" name="status" value="0" className="form-check-input"  onChange={(e)=>setStatus(e.target.value)} />Unpublished </label>
                                     </div>
                                 </div>
                         </div>
@@ -230,4 +206,4 @@ const onSubmitForm = async(e) =>{
   )
 }
 
-export default ProductEdit
+export default ProductEdits

@@ -54,7 +54,7 @@ class ProductController extends Controller
         // dd($images);
         if($images){
             $fileName = 'product'.'_'.time().'image'.'.'.$images->extension();
-            $images->move(public_path('frontend/img/product_store/'),$fileName);
+            $images->move(public_path('frontend/img/product/store/'),$fileName);
         }
 
         $store = Product::create([
@@ -123,34 +123,47 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
 
-        $product = Product::find($id);
+
+        // $update = Product::find($id);
+        // $images = $request->file('product_image');
+        // $oldImage = '/frontend/img/product_store' . $update->product_image;
+        // $fileName = $update->product_image; // Initialize $fileName here
+        // if ($images) {
+        //     if (File::exists($oldImage)) {
+        //         File::delete($oldImage);
+        //     }
+        //     $fileName = 'product' . '_' . time() . '_' .'image' . '.' . $images->extension();
+        //     $images->move(public_path('/frontend/img/product_store'), $fileName);
+        // }
+
+        // dd($request->all());
+        $update = Product::find($id);
+
         $images = $request->file('product_image');
-        $oldImage = 'frontend/img/product_store/'.$product->product_image;
-        // dd($images);
-        if($images){
-            if(File::exists($oldImage)){
-                File::delete($oldImage);
-            }
-            $fileName = 'product'.'_'.time().'image'.'.'.$images->extension();
-            $images->move(public_path('frontend/img/product_store/'),$fileName);
+
+        if ($images) {
+            $fileName = time() . '.' . $images->getClientOriginalExtension();
+            $images->move(public_path('frontend/img/product/store/'), $fileName);
+        } else {
+            // Handle the case where no new image was uploaded.
+            $fileName = $update->product_image; // Use the existing file name
         }
 
-        $product->update([
+        $update->update([
             'category_id'=>$request->category_id,
             'brand_id'=>$request->brand_id,
             'product_name'=>$request->product_name,
             'product_price'=>$request->product_price,
             'product_quantity'=>$request->product_quantity,
-            'short_desc'=>$request->short_description,
-            'long_desc'=>$request->long_description,
+            'short_desc'=>$request->short_desc,
+            'long_desc'=>$request->long_desc,
             'status'=>$request->status,
             'product_image'=>$fileName
         ]);
 
 
-        return response()->json(['product'=>$product,'status'=>200]);
+        return response()->json(['update'=>$update,'status'=>200]);
     }
 
     /**
@@ -159,8 +172,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $delete = Product::find($id);
+        $delete->delete();
+        return response()->json(['delete'=>$delete,'status'=>200]);
     }
 }
