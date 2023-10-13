@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\FeatureAreaController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 
 /*
@@ -25,6 +26,7 @@ use App\Http\Controllers\CategoryController;
 Route::get('/frontend-banner', [BannerController::class,'index']);
 Route::get('frontend-feature', [FeatureAreaController::class,'index']);
 Route::get('/frontend-category', [CategoryController::class,'index']);
+Route::get('/frontend-product', [ProductController::class,'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

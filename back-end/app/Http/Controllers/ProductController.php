@@ -26,7 +26,14 @@ class ProductController extends Controller
         ->select('products.*','categories.category','brands.brand')
         ->get();
 
-        return response()->json(['products'=>$products, 'status'=>200]);
+        $featuredProduct = DB::table('products')
+        ->join('categories','products.category_id','=','categories.id')
+        ->join('brands','products.brand_id','=','brands.id')
+        ->select('products.*','categories.category','brands.brand')
+        ->take(3)
+        ->get();
+
+        return response()->json(['products'=>$products, 'featuredProduct'=>$featuredProduct ,'status'=>200]);
     }
 
     /**
