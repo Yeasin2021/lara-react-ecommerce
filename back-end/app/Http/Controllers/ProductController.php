@@ -26,14 +26,26 @@ class ProductController extends Controller
         ->select('products.*','categories.category','brands.brand')
         ->get();
 
-        $featuredProduct = DB::table('products')
-        ->join('categories','products.category_id','=','categories.id')
-        ->join('brands','products.brand_id','=','brands.id')
-        ->select('products.*','categories.category','brands.brand')
-        ->take(3)
-        ->get();
+        // for frontend
+        // $featuredProduct = DB::table('products')
+        // ->join('categories','products.category_id','=','categories.id')
+        // ->join('brands','products.brand_id','=','brands.id')
+        // ->select('products.*','categories.category','brands.brand')
+        // ->take(3)
+        // ->get();
 
-        return response()->json(['products'=>$products, 'featuredProduct'=>$featuredProduct ,'status'=>200]);
+        $featuredProduct = Product::where('status',1)
+                                    ->orderBy('id','ASC')
+                                    ->take(3)
+                                    ->get();
+
+        $newProduct = Product::where('status',1)
+                                    ->orderBy('id','DESC')
+                                    ->skip(3)
+                                    ->take(4)
+                                    ->get();
+
+        return response()->json(['products'=>$products, 'featuredProduct'=>$featuredProduct , 'newProduct'=>$newProduct ,'status'=>200]);
     }
 
     /**
