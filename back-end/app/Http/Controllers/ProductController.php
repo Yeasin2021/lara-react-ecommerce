@@ -98,9 +98,22 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        // $categorieProducts = Product::where('category_id',$id)
+        //                        ->where('status',1)
+        //                        ->get();
+        // return response()->json(['categorieProducts'=>$categorieProducts,'status'=>200]);
+    }
+
+
+    // product show by category
+    public function categoryProduct($id)
+    {
+        $categorieProducts = Product::where('category_id',$id)
+                               ->where('status',1)
+                               ->get();
+        return response()->json(['categorieProducts'=>$categorieProducts,'status'=>200]);
     }
 
     /**

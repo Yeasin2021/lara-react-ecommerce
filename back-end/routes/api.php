@@ -28,6 +28,9 @@ Route::get('frontend-feature', [FeatureAreaController::class,'index']);
 Route::get('/frontend-category', [CategoryController::class,'index']);
 Route::get('/frontend-product', [ProductController::class,'index']);
 
+// product show by category
+Route::get('/category-product/{id}', [ProductController::class,'categoryProduct']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

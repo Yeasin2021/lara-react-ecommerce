@@ -56,6 +56,10 @@ Route::post('product-status/{id}', [ProductController::class,'productStatus']);
 
 
 
+
+
+
+
 Route::get('/{path?}/{paths?}', function () {
     return view('admin');
 });
